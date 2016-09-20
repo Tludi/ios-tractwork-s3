@@ -8,23 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		005ABEED1D8F4A7000C873D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */; };
-		005ABEEF1D8F4A7000C873D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ABEEE1D8F4A7000C873D8 /* ViewController.swift */; };
+		005ABEEF1D8F4A7000C873D8 /* TimeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */; };
 		005ABEF21D8F4A7000C873D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005ABEF01D8F4A7000C873D8 /* Main.storyboard */; };
 		005ABEF41D8F4A7000C873D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 005ABEF31D8F4A7000C873D8 /* Assets.xcassets */; };
 		005ABEF71D8F4A7000C873D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005ABEF51D8F4A7000C873D8 /* LaunchScreen.storyboard */; };
 		005ABEFF1D8F4AA900C873D8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 005ABEFE1D8F4AA900C873D8 /* Podfile */; };
+		005ABF071D8F7C4A00C873D8 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ABF061D8F7C4A00C873D8 /* DateHelper.swift */; };
+		00B890231D90711900E39794 /* Realm_Workday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890221D90711900E39794 /* Realm_Workday.swift */; };
+		00B890261D90767700E39794 /* DA_Workday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890251D90767700E39794 /* DA_Workday.swift */; };
+		00B890281D9079E500E39794 /* DA_Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890271D9079E500E39794 /* DA_Date.swift */; };
 		5A7EA1C6E43385A7D0CE527D /* Pods_tractwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3328B384E302251AE030E698 /* Pods_tractwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		005ABEE91D8F4A7000C873D8 /* tractwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tractwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		005ABEEE1D8F4A7000C873D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = tractwork/AppDelegate.swift; sourceTree = "<group>"; };
+		005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardViewController.swift; sourceTree = "<group>"; };
 		005ABEF11D8F4A7000C873D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		005ABEF31D8F4A7000C873D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		005ABEF31D8F4A7000C873D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = tractwork/Assets.xcassets; sourceTree = "<group>"; };
 		005ABEF61D8F4A7000C873D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		005ABEF81D8F4A7000C873D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		005ABEFE1D8F4AA900C873D8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		005ABEF81D8F4A7000C873D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = tractwork/Info.plist; sourceTree = "<group>"; };
+		005ABEFE1D8F4AA900C873D8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		005ABF051D8F7C3C00C873D8 /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
+		005ABF061D8F7C4A00C873D8 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		00B890221D90711900E39794 /* Realm_Workday.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm_Workday.swift; sourceTree = "<group>"; };
+		00B890251D90767700E39794 /* DA_Workday.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DA_Workday.swift; sourceTree = "<group>"; };
+		00B890271D9079E500E39794 /* DA_Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DA_Date.swift; sourceTree = "<group>"; };
 		3328B384E302251AE030E698 /* Pods_tractwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tractwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90873A58A7A9D321CE4D1CD3 /* Pods-tractwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.debug.xcconfig"; sourceTree = "<group>"; };
 		B3854ABD1A4D8198559ACCAA /* Pods-tractwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.release.xcconfig"; sourceTree = "<group>"; };
@@ -45,11 +54,14 @@
 		005ABEE01D8F4A7000C873D8 = {
 			isa = PBXGroup;
 			children = (
-				005ABEFE1D8F4AA900C873D8 /* Podfile */,
 				005ABEEB1D8F4A7000C873D8 /* tractwork */,
+				00B890241D90719B00E39794 /* Models */,
+				00B8901E1D9066B400E39794 /* Support Files */,
 				005ABEEA1D8F4A7000C873D8 /* Products */,
+				005ABEFE1D8F4AA900C873D8 /* Podfile */,
 				6DABFF95F7E8C6CFD711A548 /* Pods */,
 				0B0BECA26F88100B39547913 /* Frameworks */,
+				005ABF041D8F7BE000C873D8 /* AFDateHelper */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,14 +76,40 @@
 		005ABEEB1D8F4A7000C873D8 /* tractwork */ = {
 			isa = PBXGroup;
 			children = (
-				005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */,
-				005ABEEE1D8F4A7000C873D8 /* ViewController.swift */,
 				005ABEF01D8F4A7000C873D8 /* Main.storyboard */,
-				005ABEF31D8F4A7000C873D8 /* Assets.xcassets */,
-				005ABEF51D8F4A7000C873D8 /* LaunchScreen.storyboard */,
-				005ABEF81D8F4A7000C873D8 /* Info.plist */,
+				005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */,
 			);
 			path = tractwork;
+			sourceTree = "<group>";
+		};
+		005ABF041D8F7BE000C873D8 /* AFDateHelper */ = {
+			isa = PBXGroup;
+			children = (
+				005ABF051D8F7C3C00C873D8 /* DateHelper.h */,
+				005ABF061D8F7C4A00C873D8 /* DateHelper.swift */,
+			);
+			name = AFDateHelper;
+			sourceTree = "<group>";
+		};
+		00B8901E1D9066B400E39794 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */,
+				005ABEF81D8F4A7000C873D8 /* Info.plist */,
+				005ABEF31D8F4A7000C873D8 /* Assets.xcassets */,
+				005ABEF51D8F4A7000C873D8 /* LaunchScreen.storyboard */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		00B890241D90719B00E39794 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				00B890221D90711900E39794 /* Realm_Workday.swift */,
+				00B890251D90767700E39794 /* DA_Workday.swift */,
+				00B890271D9079E500E39794 /* DA_Date.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		0B0BECA26F88100B39547913 /* Frameworks */ = {
@@ -127,6 +165,7 @@
 					005ABEE81D8F4A7000C873D8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LWH67H9CS7;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -216,7 +255,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005ABEEF1D8F4A7000C873D8 /* ViewController.swift in Sources */,
+				005ABF071D8F7C4A00C873D8 /* DateHelper.swift in Sources */,
+				00B890231D90711900E39794 /* Realm_Workday.swift in Sources */,
+				005ABEEF1D8F4A7000C873D8 /* TimeCardViewController.swift in Sources */,
+				00B890261D90767700E39794 /* DA_Workday.swift in Sources */,
+				00B890281D9079E500E39794 /* DA_Date.swift in Sources */,
 				005ABEED1D8F4A7000C873D8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +281,7 @@
 				005ABEF61D8F4A7000C873D8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = tractwork;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -344,11 +388,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LWH67H9CS7;
 				INFOPLIST_FILE = tractwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = diligentagilty.tractwork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -359,6 +405,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LWH67H9CS7;
 				INFOPLIST_FILE = tractwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
