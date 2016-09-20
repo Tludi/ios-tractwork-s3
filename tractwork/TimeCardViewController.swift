@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TimeCardViewController: UIViewController {
+class TimeCardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let date = Date()
     var currentStatus: Bool = false
     
@@ -28,6 +28,7 @@ class TimeCardViewController: UIViewController {
     //**** Labels
     //***********
     @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var totalTimeLabel: UILabel!
     
     
     //**** Tab Bar Buttons
@@ -38,7 +39,7 @@ class TimeCardViewController: UIViewController {
         try! realm.write {
             realm.delete(workdays)
         }
-        // weekTable.reloadData()
+        weekTable.reloadData()
     }
     
     @IBAction func clearTimePunches(_ sender: UIBarButtonItem) {
@@ -48,25 +49,9 @@ class TimeCardViewController: UIViewController {
             realm.delete(timePunches)
             todaysWorkday.totalHoursWorked = 0
         }
-        // timePunchTable.reloadData()
+        timePunchTable.reloadData()
     }
     
-    @IBAction func toggleTables(_ sender: UIBarButtonItem) {
-        if timePunchStack.isHidden {
-            timePunchStack.isHidden = false
-        } else {
-            timePunchStack.isHidden = true
-        }
-        
-        if weekTable.isHidden {
-            weekTable.isHidden = false
-        } else {
-            weekTable.isHidden = true
-        }
-        timePunchStack.reloadInputViews()
-        weekTable.reloadData()
-        
-    }
 
     //**** Buttons
     //************
@@ -75,34 +60,21 @@ class TimeCardViewController: UIViewController {
     
     //**** Tables
     //***********
-    @IBOutlet weak var timePunchTable: UITableView!
-    @IBOutlet weak var weekTable: UITableView!
- 
-
     @IBOutlet weak var timePunchStack: UIStackView!
+    @IBOutlet weak var timePunchTable: UITableView!
     @IBOutlet weak var totalTimeView: UIView!
+ 
+    @IBOutlet weak var weekTable: UITableView!
     
     
-    //**** Table Nav Bar
-    //******************
+    //**** Tables Nav Bar
+    //*******************
     
     //**** Today Nav Tab
     @IBOutlet weak var todayNavBox: UIView!
     @IBOutlet weak var todayButtonLabel: UIButton!
     @IBAction func todayButton(_ sender: UIButton) {
         activateToday()
-    }
-    
-    func activateToday() {
-        todayNavBox.backgroundColor = lightGreyNavColor
-        todayButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
-        weekNavBox.backgroundColor = darkGreyNavColor
-        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
-        fourWeekNavBox.backgroundColor = darkGreyNavColor
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
-        timePunchStack.isHidden = false
-        weekTable.isHidden = true
-        timePunchTable.reloadData()
     }
     
     //**** Week Nav Tab
@@ -133,14 +105,18 @@ class TimeCardViewController: UIViewController {
     }
     
     
+    
+    
+    //**** Start UIView processing
+    //****************************
+    //****************************
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         testLabel.text = "\(date)"
 
-        setBaseColors()
-        
-
+        setBaseColors() // set base colors of tables and navbar tabs
         
         //**** Set Navbar background to clear
         //***********************************
@@ -148,34 +124,77 @@ class TimeCardViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
+        //**** Register custom cell nibs
+        //******************************
+        timePunchTable.register(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
+        weekTable.register(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
+        
     }
     
-    func setBaseColors() {
-        //*** set initial colors for nav tabs
-        //***********************************
-        todayNavBox.backgroundColor = lightGreyNavColor
-        todayButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
-        weekNavBox.backgroundColor = darkGreyNavColor
-        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
-        fourWeekNavBox.backgroundColor = darkGreyNavColor
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+    
+    //**** TableView processing
+    //*************************
+    //*************************
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
         
-        //*** set initial colors for tables
-        //*********************************
-        timePunchStack.backgroundColor = tableColor
+        if tableView == timePunchTable {
+            let todaysTimePunches = todaysWorkday.timePunches
+            return todaysTimePunches.count
+        } else if tableView == weekTable {
+            return weekDays.count
+        } else {
+            return 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let todaysTimePunches = todaysWorkday.timePunches
+        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
         
-        timePunchTable.backgroundColor = tableColor
-        totalTimeView.backgroundColor = tableColor
-        
-        weekTable.backgroundColor = tableColor
-        weekTable.isHidden = true
-        
+        if tableView == timePunchTable {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "timePunchCell") as! TimePunchTableViewCell
+            
+            let timePunch = todaysTimePunches[indexPath.row]
+            
+            if timePunch.status {
+                cell.statusLabel.text = "IN"
+                cell.statusColorImage.image = UIImage(named: "smGreenCircle")
+            } else {
+                cell.statusLabel.text = "OUT"
+                cell.statusColorImage.image = UIImage(named: "smRedCircle")
+            }
+            //        timePunchLabel.text = timePunch.punchTime
+            cell.timePunchLabel.text = "\(timePunch.punchTime!.toString(.custom("hh:mm")))"
+            //        cell.timePunchLabel.text = "Hello"
+            
+            return cell
+            
+            
+            //*** Week Tab  ***//
+        } else if tableView == weekTable {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
+            //        print ("pressed week")
+            //        print(weekDays.count)
+            let workday = weekDays[indexPath.row]
+            cell.weekHoursLabel.text = workday.dayDate!.toString(.custom("dd MMM YYYY"))
+            cell.totalHoursLabel.text = workday.totalHoursWorked.getHourAndMinuteOutput(total: workday.totalHoursWorked)
+            cell.dayNameLabel.text = workday.dayDate?.toString(.custom("EEEE"))
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "notUsed")
+            return cell!
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+
 
 
 }

@@ -87,11 +87,19 @@
                                     </stackView>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="20" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XHq-Td-GUN">
                                         <color key="backgroundColor" red="0.51575181449999996" green="0.66666666669999997" blue="0.35114503650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="ZBr-54-0uO" id="uxn-eX-N3b"/>
+                                            <outlet property="delegate" destination="ZBr-54-0uO" id="Jsa-qI-1Pi"/>
+                                        </connections>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wMw-Jp-Ift">
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="20" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hd0-SU-Jyb">
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="ZBr-54-0uO" id="DCw-wr-h7h"/>
+                                                    <outlet property="delegate" destination="ZBr-54-0uO" id="MuK-bZ-7ob"/>
+                                                </connections>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKC-Sj-a2N">
                                                 <subviews>
@@ -162,11 +170,6 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="toggle" id="Fuo-cZ-ain">
-                            <connections>
-                                <action selector="toggleTables:" destination="ZBr-54-0uO" id="Wgg-q5-tzZ"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="fourWeekButtonLabel" destination="MHr-0w-hau" id="262-Im-YzW"/>
@@ -176,6 +179,7 @@
                         <outlet property="timePunchTable" destination="Hd0-SU-Jyb" id="m39-hA-ee4"/>
                         <outlet property="todayButtonLabel" destination="YlI-N1-6UD" id="5fH-aD-Jiw"/>
                         <outlet property="todayNavBox" destination="4pF-Jl-1cL" id="Zch-fg-rX6"/>
+                        <outlet property="totalTimeLabel" destination="J2C-s4-Fo5" id="RYP-j8-RRe"/>
                         <outlet property="totalTimeView" destination="MKC-Sj-a2N" id="Fcr-Xj-k55"/>
                         <outlet property="weekButtonLabel" destination="MAE-Fk-j36" id="i0R-q1-0Ed"/>
                         <outlet property="weekNavBox" destination="b0V-G8-ZUi" id="OJb-vA-xpu"/>

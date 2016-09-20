@@ -31,7 +31,7 @@ class Workday: Object {
 
 class TimePunch: Object {
     dynamic var id = ""
-    dynamic var punchTime: NSDate? = nil
+    dynamic var punchTime: Date? = nil
     dynamic var status = false
     
     override static func primaryKey() -> String? {
