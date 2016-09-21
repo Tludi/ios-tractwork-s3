@@ -133,11 +133,27 @@
                                     <constraint firstItem="ivo-ZR-yDX" firstAttribute="leading" secondItem="PY0-2A-eJ3" secondAttribute="leading" id="zRj-i3-AMj"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxb-0Q-WSl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxb-0Q-WSl">
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="silverTimeButton" translatesAutoresizingMaskIntoConstraints="NO" id="7Sp-Kr-Euo">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="252" id="ENa-Qw-Spy"/>
+                                    <constraint firstAttribute="height" constant="252" id="dmE-FX-laU"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAY-xA-qUg">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="WMg-Sa-Zyl"/>
+                                    <constraint firstAttribute="width" constant="300" id="a0q-k6-ez0"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="InGreenButton"/>
+                                <connections>
+                                    <action selector="timePunchButton:" destination="ZBr-54-0uO" eventType="touchUpInside" id="6iQ-6E-kQZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -148,13 +164,17 @@
                             <constraint firstItem="nsF-E1-GEW" firstAttribute="top" secondItem="6B2-W2-dWh" secondAttribute="bottom" id="CNd-Ky-zY8"/>
                             <constraint firstItem="nsF-E1-GEW" firstAttribute="top" secondItem="EZZ-EB-Kdt" secondAttribute="bottom" id="G9W-0e-0MU"/>
                             <constraint firstItem="Bxb-0Q-WSl" firstAttribute="centerX" secondItem="Eud-HL-56j" secondAttribute="centerX" id="MG8-w3-NWT"/>
+                            <constraint firstItem="7Sp-Kr-Euo" firstAttribute="centerX" secondItem="oAY-xA-qUg" secondAttribute="centerX" id="QQJ-If-9XM"/>
                             <constraint firstItem="EZZ-EB-Kdt" firstAttribute="leading" secondItem="Eud-HL-56j" secondAttribute="leading" id="Qif-XC-xyn"/>
                             <constraint firstAttribute="trailing" secondItem="PY0-2A-eJ3" secondAttribute="trailing" id="bQg-WZ-P2c"/>
+                            <constraint firstItem="oAY-xA-qUg" firstAttribute="centerX" secondItem="Eud-HL-56j" secondAttribute="centerX" id="eZT-oE-9oj"/>
+                            <constraint firstItem="7Sp-Kr-Euo" firstAttribute="centerY" secondItem="oAY-xA-qUg" secondAttribute="centerY" id="i3s-qb-n5r"/>
                             <constraint firstItem="PY0-2A-eJ3" firstAttribute="height" secondItem="Eud-HL-56j" secondAttribute="height" multiplier="0.33" id="mJl-P3-CWP"/>
                             <constraint firstItem="6B2-W2-dWh" firstAttribute="leading" secondItem="Eud-HL-56j" secondAttribute="leading" id="qSe-LB-8R3"/>
                             <constraint firstItem="6B2-W2-dWh" firstAttribute="top" secondItem="Eud-HL-56j" secondAttribute="top" id="uw8-43-NYr"/>
                             <constraint firstAttribute="trailing" secondItem="6B2-W2-dWh" secondAttribute="trailing" id="wzQ-MK-Qay"/>
                             <constraint firstItem="nsF-E1-GEW" firstAttribute="top" secondItem="PY0-2A-eJ3" secondAttribute="bottom" id="yji-X7-8Ej"/>
+                            <constraint firstItem="Bxb-0Q-WSl" firstAttribute="top" secondItem="oAY-xA-qUg" secondAttribute="bottom" constant="67.5" id="zFU-pU-TN9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dxy-Zs-aYc">
@@ -174,7 +194,9 @@
                     <connections>
                         <outlet property="fourWeekButtonLabel" destination="MHr-0w-hau" id="262-Im-YzW"/>
                         <outlet property="fourWeekNavBox" destination="7Fv-br-Pfm" id="VGp-Qy-elb"/>
+                        <outlet property="silverTimeButtonRing" destination="7Sp-Kr-Euo" id="ufB-hB-uA3"/>
                         <outlet property="testLabel" destination="Bxb-0Q-WSl" id="M9f-6I-Nm5"/>
+                        <outlet property="timePunchButtonOutlet" destination="oAY-xA-qUg" id="stJ-QR-eIE"/>
                         <outlet property="timePunchStack" destination="wMw-Jp-Ift" id="PDy-Mt-YZv"/>
                         <outlet property="timePunchTable" destination="Hd0-SU-Jyb" id="m39-hA-ee4"/>
                         <outlet property="todayButtonLabel" destination="YlI-N1-6UD" id="5fH-aD-Jiw"/>
@@ -212,6 +234,8 @@
     </scenes>
     <resources>
         <image name="GreenGradientBG" width="375" height="667"/>
+        <image name="InGreenButton" width="304" height="304"/>
         <image name="OBPierBG" width="640" height="1026"/>
+        <image name="silverTimeButton" width="252" height="252"/>
     </resources>
 </document>

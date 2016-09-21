@@ -27,3 +27,13 @@ extension Double {
         return totalTimeText
     }
 }
+
+extension Array {
+    // partition array by given amount
+    func partitionBy(subSize: Int) -> [[Element]] {
+        return 0.stride(to: self.count, by: subSize).map { startIndex in
+            let endIndex = startIndex.advancedBy(subSize, limit: self.count)
+            return Array(self[startIndex ..< endIndex])
+        }
+    }
+}

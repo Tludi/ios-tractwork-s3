@@ -17,14 +17,17 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     //***********
     var workdayCount = 0
     let todaysWorkDate = Date()
-    let todaysWorkday = Workday()
+    var todaysWorkday = Workday()
     
     // App colors
     //***********
     let darkGreyNavColor = UIColor(red: 6.0/255.0, green: 60.0/255.0, blue: 54.0/255.0, alpha: 0.95)
+    let darkGreyNavColor2 = UIColor(red: 38.0/255.0, green: 50.0/255.0, blue: 56.0/255.0, alpha: 0.95)
     let lightGreyNavColor = UIColor(red: 136.0/255.0, green: 166.0/255.0, blue: 173.0/255.0, alpha: 0.95)
-    let tableColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
-
+    let lightGreyNavColor2 = UIColor(red:144.0/255.0, green: 164.0/255.0, blue: 174.0/255.0, alpha: 0.95)
+    let tableColorlt = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 0.8)
+    let tableColor = UIColor(red: 38.0/255.0, green: 50.0/255.0, blue: 56.0/255.0, alpha: 0.8)
+    
     //**** Labels
     //***********
     @IBOutlet weak var testLabel: UILabel!
@@ -55,6 +58,29 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
 
     //**** Buttons
     //************
+    @IBOutlet weak var silverTimeButtonRing: UIImageView!
+    @IBOutlet weak var timePunchButtonOutlet: UIButton!
+    @IBAction func timePunchButton(_ sender: UIButton) {
+        let newTimePunch = TimePunch()
+        let todaysTimePunches = todaysWorkday.timePunches
+        let realm = try! Realm()
+        
+        try! realm.write {
+            currentStatus = !currentStatus
+            newTimePunch.id = NSUUID().uuidString
+            newTimePunch.punchTime = Date()
+            newTimePunch.status = currentStatus
+            
+            todaysTimePunches.append(newTimePunch)
+            
+        }
+        print("\(todaysTimePunches.count) timePunches")
+        timePunchTable.reloadData()
+        activateToday()
+        //    counter += 1
+        //    totalTimeLabel.text = "\(counter):00"
+        calculateTotalTime(todaysTimePunches, workday: todaysWorkday)
+    }
     
     
     
@@ -81,12 +107,12 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var weekNavBox: UIView!
     @IBOutlet weak var weekButtonLabel: UIButton!
     @IBAction func weekButton(_ sender: UIButton) {
-        todayNavBox.backgroundColor = darkGreyNavColor
-        todayButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
-        weekNavBox.backgroundColor = lightGreyNavColor
-        weekButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
-        fourWeekNavBox.backgroundColor = darkGreyNavColor
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        todayNavBox.backgroundColor = darkGreyNavColor2
+        todayButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        weekNavBox.backgroundColor = lightGreyNavColor2
+        weekButtonLabel.setTitleColor(darkGreyNavColor2, for: .normal)
+        fourWeekNavBox.backgroundColor = darkGreyNavColor2
+        fourWeekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
         timePunchStack.isHidden = true
         weekTable.isHidden = false
         weekTable.reloadData()
@@ -128,6 +154,20 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         //******************************
         timePunchTable.register(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
         weekTable.register(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
+        
+        
+        //**** process current workday and timepunches
+        //********************************************
+        let workday = DA_Workday()
+        todaysWorkday = workday.retrieveTodaysWorkday()
+        
+        let timePunches = todaysWorkday.timePunches
+        
+        if timePunches.count == 0 {
+            currentStatus = false
+        } else {
+            currentStatus = timePunches.last!.status
+        }
         
     }
     
