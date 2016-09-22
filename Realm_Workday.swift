@@ -17,16 +17,21 @@ class Workday: Object {
     dynamic var project = "general work"
     dynamic var totalHoursWorked = 0.0
     dynamic var worker = "milo"
+    dynamic var currentStatus = false
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
     let timePunches = List<TimePunch>()
+    
     let projects = List<Project>()
     
 }
 
+class TimePunchPair: Object {
+    
+}
 
 
 class TimePunch: Object {

@@ -79,7 +79,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         activateToday()
         //    counter += 1
         //    totalTimeLabel.text = "\(counter):00"
-        calculateTotalTime(todaysTimePunches, workday: todaysWorkday)
+        calculateTotalTime(timePunches: todaysTimePunches, workday: todaysWorkday)
     }
     
     

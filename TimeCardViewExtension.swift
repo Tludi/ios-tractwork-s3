@@ -79,10 +79,12 @@ extension TimeCardViewController {
         let currentTime = hour + minute    // Need to change to current time
         //    let fillerPunch = Double(now.hour() + (now.minute()*0.001))
         print("\(currentTime) now")
-        if myArray.count % 2 != 0 {
+        
+        if myArray.isOdd() {
             myArray.append(currentTime)
         }
-        let partitionedArray = myArray.partitionBy(2)
+        
+        let partitionedArray:[[Double]] = myArray.partitionArray(subSet: 2)
         print("partitioned array \(partitionedArray)")
         return partitionedArray
     }
@@ -93,9 +95,9 @@ extension TimeCardViewController {
         // put the dayDate (NSDate?) for each day and put in array
         let pulledTimes = pullTimePunchTimes(timePunches: timePunches) // [NSDate?]
         // Convert NSDate? array to Double (hr.min) array
-        let convertedTimes = convertNSDateToHourAndMin(pulledTimes) // [Double]
+        let convertedTimes = convertNSDateToHourAndMin(timesToConvert: pulledTimes as [NSDate?]) // [Double]
         // partition Double array into pairs
-        let partitionedTimes = sortArraybyTwos(convertedTimes) // [[Double]]
+        let partitionedTimes = sortArraybyTwos(array0: convertedTimes) // [[Double]]
         // get difference in each in/out punches and add to total
         for bit in partitionedTimes {
             let difference = bit[1] - bit[0]
@@ -108,6 +110,6 @@ extension TimeCardViewController {
             workday.totalHoursWorked = totalCounter
         }
         
-        totalTimeLabel.text = totalCounter.getHourAndMinuteOutput(totalCounter)
+        totalTimeLabel.text = totalCounter.getHourAndMinuteOutput(total: totalCounter)
     }
 }

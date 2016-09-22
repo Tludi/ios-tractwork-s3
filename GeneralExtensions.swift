@@ -20,7 +20,7 @@ extension Double {
         let total = modf(total)
         let hr = Int(total.0)
 //        let min = Int(total.1.roundToPlaces(places: 2)*60)
-        let min = Int(total.1)
+        let min = Int(total.1)*60
         
         let totalTimeText = "\(hr):\(min)"
         print("\(totalTimeText) hours calculated")
@@ -29,11 +29,32 @@ extension Double {
 }
 
 extension Array {
-    // partition array by given amount
-    func partitionBy(subSize: Int) -> [[Element]] {
-        return 0.stride(to: self.count, by: subSize).map { startIndex in
-            let endIndex = startIndex.advancedBy(subSize, limit: self.count)
-            return Array(self[startIndex ..< endIndex])
+    // partition array by subSet amount
+    func partitionArray<T>(subSet:Int) -> [[T]] {
+        var pair = [T]()
+        var timePunchPairs = [[T]]()
+        
+        for punch in self {
+            if pair.count >= subSet {
+                timePunchPairs.append(pair)
+                pair.removeAll()
+            }
+            if pair.count < subSet {
+                pair.append(punch as! T)
+            }
         }
+        timePunchPairs.append(pair)
+        return timePunchPairs
     }
+    
+    // check if Array has even count
+    func isEven() -> Bool {
+        return self.count % 2 == 0
+    }
+    
+    // check if Array has odd count
+    func isOdd() -> Bool {
+        return self.count % 2 != 0
+    }
+    
 }
