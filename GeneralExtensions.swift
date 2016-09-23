@@ -14,13 +14,14 @@ extension Double {
 //        let divisor = pow(10.0, Double(places))
 //        return round(self * divisor) / divisor
 //    }
+
     
     func getHourAndMinuteOutput(total: Double) -> String {
         // split total time into whole and decimal to convert to minutes
         let total = modf(total)
         let hr = Int(total.0)
 //        let min = Int(total.1.roundToPlaces(places: 2)*60)
-        let min = Int(total.1)*60
+        let min = Int(total.1 / 0.01)*60
         
         let totalTimeText = "\(hr):\(min)"
         print("\(totalTimeText) hours calculated")

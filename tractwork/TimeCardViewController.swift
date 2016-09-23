@@ -160,6 +160,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         //********************************************
         let workday = DA_Workday()
         todaysWorkday = workday.retrieveTodaysWorkday()
+        totalTimeLabel.text = "\(todaysWorkday.totalHoursWorked)"
         
         let timePunches = todaysWorkday.timePunches
         
