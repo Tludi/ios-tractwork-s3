@@ -42,8 +42,8 @@ extension TimeCardViewController {
         todayButtonLabel.setTitleColor(darkGreyNavColor2, for: .normal)
         weekNavBox.backgroundColor = darkGreyNavColor2
         weekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
-        fourWeekNavBox.backgroundColor = darkGreyNavColor
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        fourWeekNavBox.backgroundColor = darkGreyNavColor2
+        fourWeekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
         timePunchStack.isHidden = false
         weekTable.isHidden = true
         timePunchTable.reloadData()
@@ -71,9 +71,6 @@ extension TimeCardViewController {
         try! realm.write() {
             workday.totalHoursWorked = totalTime
         }
-        
-//        totalTimeLabel.text = totalTime.getHourAndMinuteOutput(total: totalTime)
-        totalTimeLabel.text = "\(totalTime)"
     }
     
     func pullTimePunchTimes(timePunches: List<TimePunch>) -> [Date?] {
@@ -128,6 +125,34 @@ extension TimeCardViewController {
             print("totalTime \(totalTime)")
         }
         return round(totalTime / toNearest) * toNearest
+    }
+    
+    func createNewTimePunch(workday: Workday) {
+        let newTimePunch = TimePunch()
+        let todaysTimePunches = todaysWorkday.timePunches
+        let realm = try! Realm()
+        
+        try! realm.write {
+            newTimePunch.id = NSUUID().uuidString
+            newTimePunch.punchTime = Date()
+            newTimePunch.status = currentStatus
+            
+            todaysTimePunches.append(newTimePunch)
+            
+        }
+    }
+    
+    func setCurrentStatus(status: Bool) {
+        switch status {
+        case true:
+            currentStatusLabel.text = "status is punched in."
+            print("status is punched in.")
+            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "OutRedButton"), for: [])
+        case false:
+            currentStatusLabel.text = "status is punched out."
+            print("status is punched out.")
+            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "InGreenButton"), for: [])
+        }
     }
     
 }

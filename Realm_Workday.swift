@@ -13,7 +13,7 @@ import RealmSwift
 
 class Workday: Object {
     dynamic var id = ""
-    dynamic var dayDate: Date? = nil
+    dynamic var dayDate = Date()
     dynamic var project = "general work"
     dynamic var totalHoursWorked = 0.0
     dynamic var worker = "milo"

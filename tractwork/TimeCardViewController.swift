@@ -10,14 +10,15 @@ import UIKit
 import RealmSwift
 
 class TimeCardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let date = Date()
-    var currentStatus: Bool = false
+    
     
     // DA objects
     //***********
     var workdayCount = 0
     let todaysWorkDate = Date()
     var todaysWorkday = Workday()
+    var currentStatus = Bool()
+    
     
     // App colors
     //***********
@@ -30,8 +31,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     
     //**** Labels
     //***********
-    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
+    @IBOutlet weak var currentStatusLabel: UILabel!
     
     
     //**** Tab Bar Buttons
@@ -61,25 +63,40 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var silverTimeButtonRing: UIImageView!
     @IBOutlet weak var timePunchButtonOutlet: UIButton!
     @IBAction func timePunchButton(_ sender: UIButton) {
-        let newTimePunch = TimePunch()
-        let todaysTimePunches = todaysWorkday.timePunches
-        let realm = try! Realm()
-        
-        try! realm.write {
-            currentStatus = !currentStatus
-            newTimePunch.id = NSUUID().uuidString
-            newTimePunch.punchTime = Date()
-            newTimePunch.status = currentStatus
-            
-            todaysTimePunches.append(newTimePunch)
-            
-        }
-        print("\(todaysTimePunches.count) timePunches")
-        timePunchTable.reloadData()
         activateToday()
+        currentStatus = !currentStatus
+//        switch currentStatus {
+//        case true:
+//            currentStatusLabel.text = "status is punched in."
+//            print("status is punched in.")
+//            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "OutRedButton"), for: [])
+//        case false:
+//            currentStatusLabel.text = "status is punched out."
+//            print("status is punched out.")
+//            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "InGreenButton"), for: [])
+//        }
+        
+        createNewTimePunch(workday: todaysWorkday)
+        setCurrentStatus(status: currentStatus)
+        let todaysTimePunches = todaysWorkday.timePunches
+//        let realm = try! Realm()
+//
+//        try! realm.write {
+//            newTimePunch.id = NSUUID().uuidString
+//            newTimePunch.punchTime = Date()
+//            newTimePunch.status = currentStatus
+//
+//            todaysTimePunches.append(newTimePunch)
+//
+//        }
+//        print("\(todaysTimePunches.count) timePunches")
+        timePunchTable.reloadData()
         //    counter += 1
         //    totalTimeLabel.text = "\(counter):00"
         calculateTotalTime(timePunches: todaysTimePunches, workday: todaysWorkday)
+        totalTimeLabel.text = "\(todaysWorkday.totalHoursWorked)"
+//        currentStatusLabel.text = "\(currentStatus)"
+        
     }
     
     
@@ -139,9 +156,27 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //**** process current workday and timepunches
+        //********************************************
+        let workday = DA_Workday()
+        todaysWorkday = workday.retrieveTodaysWorkday()
+        let todaysDate = todaysWorkday.dayDate.toString(.custom("MMMM dd, yyyy"))
         
-        testLabel.text = "\(date)"
+        //**** get current in/out status
+        currentStatus = todaysWorkday.currentStatus
+        
+        switch currentStatus {
+        case true:
+            currentStatusLabel.text = "status is punched in."
+        case false:
+            currentStatusLabel.text = "status is punched out."
+        }
 
+        //**** Set labels
+        dateLabel.text = todaysDate
+        totalTimeLabel.text = "\(todaysWorkday.totalHoursWorked)"
+        
+        
         setBaseColors() // set base colors of tables and navbar tabs
         
         //**** Set Navbar background to clear
@@ -156,19 +191,6 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         weekTable.register(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
         
         
-        //**** process current workday and timepunches
-        //********************************************
-        let workday = DA_Workday()
-        todaysWorkday = workday.retrieveTodaysWorkday()
-        totalTimeLabel.text = "\(todaysWorkday.totalHoursWorked)"
-        
-        let timePunches = todaysWorkday.timePunches
-        
-        if timePunches.count == 0 {
-            currentStatus = false
-        } else {
-            currentStatus = timePunches.last!.status
-        }
         
     }
     
@@ -194,7 +216,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let todaysTimePunches = todaysWorkday.timePunches
+        let todaysTimePunches = todaysWorkday.timePunches.sorted(byProperty: "punchTime", ascending: false)
         let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
         
         if tableView == timePunchTable {
@@ -223,9 +245,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             //        print ("pressed week")
             //        print(weekDays.count)
             let workday = weekDays[indexPath.row]
-            cell.weekHoursLabel.text = workday.dayDate!.toString(.custom("dd MMM YYYY"))
-            cell.totalHoursLabel.text = workday.totalHoursWorked.getHourAndMinuteOutput(total: workday.totalHoursWorked)
-            cell.dayNameLabel.text = workday.dayDate?.toString(.custom("EEEE"))
+            cell.weekHoursLabel.text = workday.dayDate.toString(.custom("dd MMM YYYY"))
+            cell.totalHoursLabel.text = "\(workday.totalHoursWorked)"
+            cell.dayNameLabel.text = workday.dayDate.toString(.custom("EEEE"))
             return cell
             
         } else {

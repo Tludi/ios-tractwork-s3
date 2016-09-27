@@ -23,6 +23,7 @@
 		00B890331D90CA6500E39794 /* WeekHoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890311D90CA6500E39794 /* WeekHoursTableViewCell.swift */; };
 		00B890341D90CA6500E39794 /* WeekHoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B890321D90CA6500E39794 /* WeekHoursTableViewCell.xib */; };
 		00B890361D90CD2E00E39794 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890351D90CD2E00E39794 /* GeneralExtensions.swift */; };
+		00CD0D2E1D94ADFC00AEBA3D /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD0D2D1D94ADFC00AEBA3D /* TestCollectionViewController.swift */; };
 		5A7EA1C6E43385A7D0CE527D /* Pods_tractwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3328B384E302251AE030E698 /* Pods_tractwork.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		00B890311D90CA6500E39794 /* WeekHoursTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekHoursTableViewCell.swift; sourceTree = "<group>"; };
 		00B890321D90CA6500E39794 /* WeekHoursTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekHoursTableViewCell.xib; sourceTree = "<group>"; };
 		00B890351D90CD2E00E39794 /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
+		00CD0D2D1D94ADFC00AEBA3D /* TestCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCollectionViewController.swift; sourceTree = "<group>"; };
 		3328B384E302251AE030E698 /* Pods_tractwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tractwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90873A58A7A9D321CE4D1CD3 /* Pods-tractwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.debug.xcconfig"; sourceTree = "<group>"; };
 		B3854ABD1A4D8198559ACCAA /* Pods-tractwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				005ABEF01D8F4A7000C873D8 /* Main.storyboard */,
 				005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */,
+				00CD0D2D1D94ADFC00AEBA3D /* TestCollectionViewController.swift */,
 			);
 			path = tractwork;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				00B890361D90CD2E00E39794 /* GeneralExtensions.swift in Sources */,
 				005ABF071D8F7C4A00C873D8 /* DateHelper.swift in Sources */,
 				00B890331D90CA6500E39794 /* WeekHoursTableViewCell.swift in Sources */,
+				00CD0D2E1D94ADFC00AEBA3D /* TestCollectionViewController.swift in Sources */,
 				00B890231D90711900E39794 /* Realm_Workday.swift in Sources */,
 				005ABEEF1D8F4A7000C873D8 /* TimeCardViewController.swift in Sources */,
 				00B890261D90767700E39794 /* DA_Workday.swift in Sources */,

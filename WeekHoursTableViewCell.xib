@@ -32,6 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="bR9-tE-Jca" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Xhk-5T-OMj"/>
                     <constraint firstItem="bR9-tE-Jca" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eOn-er-RQ2"/>
@@ -41,6 +42,7 @@
                     <constraint firstItem="KPa-M5-O32" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="qQg-JX-Y2G"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="dayNameLabel" destination="KPa-M5-O32" id="znI-EN-NYv"/>
                 <outlet property="totalHoursLabel" destination="ZGm-20-wyj" id="k1j-VZ-Jqg"/>

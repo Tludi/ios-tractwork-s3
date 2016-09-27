@@ -24,7 +24,7 @@ class DA_Workday {
     func retrieveTodaysWorkday() -> Workday {
         var workday = Workday()
         if thereAreAnyWorkdays() {
-            workday = checkForTodaysWorkday()
+            workday = getTodaysWorkday()
         } else {
             workday = createTodaysWorkday()
         }
@@ -32,36 +32,49 @@ class DA_Workday {
     }
     
     func thereAreAnyWorkdays() -> Bool {
-        if allWorkdays.count == 0 {
-            print("no workdays (thereAreAnyWorkdays())")
-            return false
-        } else {
+        if allWorkdays.count > 0 {
             print("workdays exist (thereAreAnyWorkdays())")
             return true
+        } else {
+            print("no workdays (thereAreAnyWorkdays())")
+            return false
         }
     }
     
-    func checkForTodaysWorkday() -> Workday{
-        let todaysWorkday = DA_Workday()
-        var workday = Workday()
+    func getTodaysWorkday() -> Workday {
+//        let todaysWorkday = DA_Workday()
+        let today = Workday()
+        let lastWorkday = allWorkdays.last
         
-        for i in 0 ..< allWorkdays.count {
-            workday = allWorkdays[i]
-            if workday.dayDate!.isToday() {
-                print("Workday from DB - \(workday.id)")
-                todaysWorkday.id = workday.id
-                print("Workday copy to use - \(todaysWorkday.id)")
-                todaysWorkday.dayDate = workday.dayDate
-                
-            } else {
-                print("creating workday (checkForTodaysWorkday())")
-                todaysWorkday.createTodaysWorkday()
-            }
+        switch today.dayDate.toString(.custom("dd MMMM yyyy")) == lastWorkday?.dayDate.toString(.custom("dd MMMM yyyy")) {
+        case true:
+            return lastWorkday!
+        default:
+            return createTodaysWorkday()
         }
-        
-        print("workday exists (checkForTodaysWorkday())")
-        return workday
     }
+    
+//    func checkForTodaysWorkday() -> Workday{
+//        let todaysWorkday = DA_Workday()
+//        var workday = Workday()
+//        
+//        for i in 0 ..< allWorkdays.count {
+//            workday = allWorkdays[i]
+//            if workday.dayDate.isToday() {
+//                print("Workday from DB - \(workday.id)")
+//                todaysWorkday.id = workday.id
+//                print("Workday copy to use - \(todaysWorkday.id)")
+//                todaysWorkday.dayDate = workday.dayDate
+//                
+//            } else {
+//                print("creating workday (checkForTodaysWorkday())")
+//                todaysWorkday.createTodaysWorkday()
+//            }
+//        }
+//        
+//        print("workday exists (checkForTodaysWorkday())")
+//        return workday
+//    }
     
     
     
