@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="43"/>
+                <frame key="frameInset" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqK-p8-8Da">
@@ -36,11 +36,11 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="G8W-rI-Nq4" firstAttribute="centerX" secondItem="tTe-eg-heO" secondAttribute="centerX" id="D53-sp-d59"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="tTe-eg-heO" secondAttribute="trailing" constant="53" id="Lzu-wg-oQq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="tTe-eg-heO" secondAttribute="trailing" constant="20" id="Lzu-wg-oQq"/>
                     <constraint firstItem="G8W-rI-Nq4" firstAttribute="centerY" secondItem="tTe-eg-heO" secondAttribute="centerY" id="RRW-3d-1mM"/>
                     <constraint firstItem="tTe-eg-heO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UuQ-WK-geh"/>
                     <constraint firstItem="nqK-p8-8Da" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Yob-rh-chU"/>
-                    <constraint firstItem="nqK-p8-8Da" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="dnO-Xn-Zh3"/>
+                    <constraint firstItem="nqK-p8-8Da" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="dnO-Xn-Zh3"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

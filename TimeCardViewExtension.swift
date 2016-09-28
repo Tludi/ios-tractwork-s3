@@ -49,83 +49,7 @@ extension TimeCardViewController {
         timePunchTable.reloadData()
     }
     
-    //*** Steps
-    //*** 1. pullTimePunchTimes() -> all TimePunch.punchTimes into pulledTimes:[Date?]
-    //*** 2. convertDateToHourAndMin() -> pulledTimes:[Date?] into convertedTimes:[Double]
-    //*** 3. sortArrayInPairs() -> convertedTimes:[Double] into partitionedTimes:[[Double]]
-    //*** 4. get the difference for partitionedTimes:[[Double]] and add to totalTime:Double
     
-    func calculateTotalTime(timePunches: List<TimePunch>, workday: Workday) {
-        // Start Counter for total time for the day
-//        var totalTime = 0.00
-        // 1. put the dayDate (Date?) for each day and put in array
-        let pulledTimes:[Date?] = pullTimePunchTimes(timePunches: timePunches) // [Date?]
-        // 2. Convert NSDate? array to Double (hr.min) array
-        let convertedTimes:[Double] = convertDateToHourAndMin(timesToConvert: pulledTimes) // [Double]
-        // 3. partition Double array into pairs
-        let partitionedTimes:[[Double]] = sortArrayInPairs(arrayToSort: convertedTimes) // [[Double]]
-        // get difference in each in/out punches and add to total
-        let totalTime = roundTimes(arrayToSort: partitionedTimes, toNearest: 0.01)
-        print("\(totalTime) - Total time - calculateTotalTime()")
-        let realm = try! Realm()
-        try! realm.write() {
-            workday.totalHoursWorked = totalTime
-        }
-    }
-    
-    func pullTimePunchTimes(timePunches: List<TimePunch>) -> [Date?] {
-        let timePunches = timePunches
-        var pulledTimes = [Date?]()
-        for time in timePunches {
-            pulledTimes.append(time.punchTime)
-        }
-        return pulledTimes // as Date? Array
-    }
-    
-    func convertDateToHourAndMin(timesToConvert: [Date?]) -> [Double] {
-        var hoursMinutesArray = [Double]()
-        let timesToConvert = timesToConvert
-        for time in timesToConvert {
-            let hour = Double(NSCalendar.current.component(.hour, from: time! as Date))
-            let minute = Double(NSCalendar.current.component(.minute, from: time! as Date))/60
-//            minute = round(minute / 0.01) * 0.01
-//            print("\(minute) minutes formatted - convertDateToHourAndMin()")
-            let hoursMinutes = hour + minute
-//            print("\(hoursMinutes) - hours + minuts time - convertDateToHourAndMin()")
-            hoursMinutesArray.append(hoursMinutes)
-            print("\(hoursMinutesArray) - hours/minuts array - convertDateToHourAndMin()")
-        }
-        return hoursMinutesArray
-    }
-    
-    
-    func sortArrayInPairs(arrayToSort: [Double]) -> [[Double]] {
-        var arrayToSort = arrayToSort
-        let now = NSDate()
-        let hour = Double(NSCalendar.current.component(.hour, from: now as Date))
-        let minute = Double(NSCalendar.current.component(.minute, from: now as Date))/60
-        let currentTime = hour + minute    // Need to change to current time
-        //    let fillerPunch = Double(now.hour() + (now.minute()*0.001))
-        print("\(currentTime) now - from sortArrayInPairs()")
-        
-        if arrayToSort.isOdd() {
-            arrayToSort.append(currentTime)
-        }
-        
-        let partitionedArray:[[Double]] = arrayToSort.partitionArray(subSet: 2)
-        print("partitioned array \(partitionedArray)")
-        return partitionedArray
-    }
-    
-    func roundTimes(arrayToSort: [[Double]], toNearest: Double) -> Double {
-        var totalTime = 0.00
-        for time in arrayToSort {
-            let difference = time[1] - time[0]
-            totalTime += difference
-            print("totalTime \(totalTime)")
-        }
-        return round(totalTime / toNearest) * toNearest
-    }
     
     func createNewTimePunch(workday: Workday) {
         let newTimePunch = TimePunch()
@@ -135,12 +59,105 @@ extension TimeCardViewController {
         try! realm.write {
             newTimePunch.id = NSUUID().uuidString
             newTimePunch.punchTime = Date()
+            print("\(newTimePunch.punchTime) - createNewPunch")
             newTimePunch.status = currentStatus
             
             todaysTimePunches.append(newTimePunch)
             
         }
     }
+    
+    
+    //*** Steps
+    //*** 1. pullTimePunchTimes() -> all TimePunch.punchTimes into pulledTimes:[Date?]
+    //*** 2. convertDateToHourAndMin() -> pulledTimes:[Date?] into convertedTimes:[Double]
+    //*** 3. sortArrayInPairs() -> convertedTimes:[Double] into partitionedTimes:[[Double]]
+    //*** 4. get the difference for partitionedTimes:[[Double]] and add to totalTime:Double
+    
+    func calculateTotalTime(workday: Workday) {
+        // Start Counter for total time for the day
+//        var totalTime = 0.00
+        // 1. put the dayDate (Date?) for each day and put in array
+        let pulledTimes:[Date] = pullTimePunchTimes(timePunches: workday.timePunches) // [Double]
+        print(pulledTimes)
+        
+        // 2. Convert NSDate? array to Double (hr.min) array
+//        let convertedTimes:[Double] = convertDateToHourAndMin(timesToConvert: pulledTimes) // [Double]
+        // 3. partition Double array into pairs
+        let partitionedTimes:[[Date]] = sortArrayInPairs(arrayToSort: pulledTimes) // [[Double]]
+        // get difference in each in/out punches and add to total
+        let totalTime = addTimeDifferenceFromPairs(partitionedTimes: partitionedTimes)
+//        let totalTime = roundTimes(arrayToSort: partitionedTimes, toNearest: 0.01)
+//        print("\(totalTime) - Total time - calculateTotalTime()")
+        let realm = try! Realm()
+        try! realm.write() {
+            workday.totalHoursWorked = totalTime
+        }
+    }
+    
+    //**** Get PunchTimes for workday
+    func pullTimePunchTimes(timePunches: List<TimePunch>) -> [Date] {
+        let timePunches = timePunches
+        var pulledTimes = [Date]()
+        for time in timePunches {
+            pulledTimes.append(time.punchTime)
+        }
+        print("\(pulledTimes) - pullTimePunchTimes Double Array")
+        return pulledTimes // as Double Array
+    }
+    
+    //**** returns an array of pairs inside parent array
+    func sortArrayInPairs(arrayToSort: [Date]) -> [[Date]] {
+        var arrayToSort = arrayToSort
+        let now = Date()
+        
+        if arrayToSort.isOdd() {
+            arrayToSort.append(now)
+        }
+        
+        let partitionedArray:[[Date]] = arrayToSort.partitionArray(subSet: 2)
+        print("partitioned array \(partitionedArray)")
+        return partitionedArray
+    }
+    
+    func addTimeDifferenceFromPairs(partitionedTimes:[[Date]]) -> String {
+        var totalTime = String()
+        var runningTime = Int()
+        for pair in partitionedTimes {
+            runningTime += pair[0].minutesBeforeDate(pair[1])
+        }
+        
+        func minutesToHoursMinutes (minutes: Int) -> (Int, Int) {
+            return (minutes / 60, minutes % 60)
+        }
+        
+        func convertHoursAndMinutesToString (minutes: Int) -> String{
+            let (h, m) = minutesToHoursMinutes(minutes: minutes)
+            var result = String()
+            if m < 10 {
+                result = "\(h):0\(m)"
+            } else {
+                result = "\(h):\(m)"
+            }
+            return result
+        }
+        totalTime = convertHoursAndMinutesToString(minutes: runningTime)
+        return totalTime
+    }
+    
+    
+//    func roundTimes(arrayToSort: [[Date]], toNearest: Double) -> String {
+//        var totalTime = String()
+//        
+//        for time in arrayToSort {
+//            let difference = time[1] - time[0]
+//            let roundedDifference = round(difference)
+//            totalTime += roundedDifference
+//            print("totalTime \(totalTime)")
+//        }
+//        return totalTime
+//    }
+
     
     func setCurrentStatus(status: Bool) {
         switch status {

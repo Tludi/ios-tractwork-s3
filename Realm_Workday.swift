@@ -15,7 +15,7 @@ class Workday: Object {
     dynamic var id = ""
     dynamic var dayDate = Date()
     dynamic var project = "general work"
-    dynamic var totalHoursWorked = 0.0
+    dynamic var totalHoursWorked = "0:00"
     dynamic var worker = "milo"
     dynamic var currentStatus = false
     
@@ -36,7 +36,7 @@ class TimePunchPair: Object {
 
 class TimePunch: Object {
     dynamic var id = ""
-    dynamic var punchTime: Date? = nil
+    dynamic var punchTime = Date()
     dynamic var status = false
     
     override static func primaryKey() -> String? {

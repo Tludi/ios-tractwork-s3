@@ -52,7 +52,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         let timePunches = todaysWorkday.timePunches
         try! realm.write {
             realm.delete(timePunches)
-            todaysWorkday.totalHoursWorked = 0
+            todaysWorkday.totalHoursWorked = "0:00"
         }
         timePunchTable.reloadData()
     }
@@ -65,35 +65,17 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func timePunchButton(_ sender: UIButton) {
         activateToday()
         currentStatus = !currentStatus
-//        switch currentStatus {
-//        case true:
-//            currentStatusLabel.text = "status is punched in."
-//            print("status is punched in.")
-//            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "OutRedButton"), for: [])
-//        case false:
-//            currentStatusLabel.text = "status is punched out."
-//            print("status is punched out.")
-//            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "InGreenButton"), for: [])
-//        }
+
         
         createNewTimePunch(workday: todaysWorkday)
         setCurrentStatus(status: currentStatus)
-        let todaysTimePunches = todaysWorkday.timePunches
-//        let realm = try! Realm()
-//
-//        try! realm.write {
-//            newTimePunch.id = NSUUID().uuidString
-//            newTimePunch.punchTime = Date()
-//            newTimePunch.status = currentStatus
-//
-//            todaysTimePunches.append(newTimePunch)
-//
-//        }
-//        print("\(todaysTimePunches.count) timePunches")
+//        let todaysTimePunches = todaysWorkday.timePunches
+
+        
         timePunchTable.reloadData()
         //    counter += 1
         //    totalTimeLabel.text = "\(counter):00"
-        calculateTotalTime(timePunches: todaysTimePunches, workday: todaysWorkday)
+        calculateTotalTime(workday: todaysWorkday)
         totalTimeLabel.text = "\(todaysWorkday.totalHoursWorked)"
 //        currentStatusLabel.text = "\(currentStatus)"
         
@@ -233,7 +215,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.statusColorImage.image = UIImage(named: "smRedCircle")
             }
             //        timePunchLabel.text = timePunch.punchTime
-            cell.timePunchLabel.text = "\(timePunch.punchTime!.toString(.custom("hh:mm")))"
+            cell.timePunchLabel.text = timePunch.punchTime.toString(.custom("hh:mm a"))
             //        cell.timePunchLabel.text = "Hello"
             
             return cell
