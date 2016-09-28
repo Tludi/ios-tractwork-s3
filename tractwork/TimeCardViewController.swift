@@ -185,13 +185,15 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
+        let thisWeeksDays = getDaysOfCurrentWeek()
+        
+//        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
         
         if tableView == timePunchTable {
             let todaysTimePunches = todaysWorkday.timePunches
             return todaysTimePunches.count
         } else if tableView == weekTable {
-            return weekDays.count
+            return thisWeeksDays.count
         } else {
             return 2
         }
@@ -199,7 +201,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todaysTimePunches = todaysWorkday.timePunches.sorted(byProperty: "punchTime", ascending: false)
-        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
+//        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
+        let thisWeeksDays = getDaysOfCurrentWeek()
         
         if tableView == timePunchTable {
             
@@ -226,10 +229,10 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
             //        print ("pressed week")
             //        print(weekDays.count)
-            let workday = weekDays[indexPath.row]
-            cell.weekHoursLabel.text = workday.dayDate.toString(.custom("dd MMM YYYY"))
-            cell.totalHoursLabel.text = "\(workday.totalHoursWorked)"
-            cell.dayNameLabel.text = workday.dayDate.toString(.custom("EEEE"))
+//            let workday = weekDays[indexPath.row]
+            cell.weekHoursLabel.text = String(thisWeeksDays[indexPath.row].day())
+//            cell.totalHoursLabel.text = "\(workday.totalHoursWorked)"
+            cell.dayNameLabel.text = thisWeeksDays[indexPath.row].weekdayToString()
             return cell
             
         } else {
