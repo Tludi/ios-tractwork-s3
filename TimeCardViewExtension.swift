@@ -50,7 +50,7 @@ extension TimeCardViewController {
     }
     
     
-    
+    //*** Creates a new timePunch
     func createNewTimePunch(workday: Workday) {
         let newTimePunch = TimePunch()
         let todaysTimePunches = todaysWorkday.timePunches
@@ -69,26 +69,23 @@ extension TimeCardViewController {
     
     
     //*** Steps
-    //*** 1. pullTimePunchTimes() -> all TimePunch.punchTimes into pulledTimes:[Date?]
-    //*** 2. convertDateToHourAndMin() -> pulledTimes:[Date?] into convertedTimes:[Double]
-    //*** 3. sortArrayInPairs() -> convertedTimes:[Double] into partitionedTimes:[[Double]]
-    //*** 4. get the difference for partitionedTimes:[[Double]] and add to totalTime:Double
+    //*** 1. pullTimePunchTimes() -> Workday.TimePunch.punchTimes into pulledTimes:[Date]
+    //*** 2. sortArrayInPairs() -> convertedTimes:[Double] into partitionedTimes:[[Date]]
+    //*** 3. get the difference for partitionedTimes:[[Double]] and add to runningTime:Int then output to totalTime:String
+    //*** 4. update Workday.totalTime:String
     
     func calculateTotalTime(workday: Workday) {
-        // Start Counter for total time for the day
-//        var totalTime = 0.00
-        // 1. put the dayDate (Date?) for each day and put in array
+
+        // 1. get the dayDate:(Date) for each punchtime for workday and put in array
         let pulledTimes:[Date] = pullTimePunchTimes(timePunches: workday.timePunches) // [Double]
         print(pulledTimes)
-        
-        // 2. Convert NSDate? array to Double (hr.min) array
-//        let convertedTimes:[Double] = convertDateToHourAndMin(timesToConvert: pulledTimes) // [Double]
-        // 3. partition Double array into pairs
+
+        // 2. partition Double array into pairs
         let partitionedTimes:[[Date]] = sortArrayInPairs(arrayToSort: pulledTimes) // [[Double]]
-        // get difference in each in/out punches and add to total
+        // 3. get difference in each in/out punches and add to total
         let totalTime = addTimeDifferenceFromPairs(partitionedTimes: partitionedTimes)
-//        let totalTime = roundTimes(arrayToSort: partitionedTimes, toNearest: 0.01)
-//        print("\(totalTime) - Total time - calculateTotalTime()")
+        
+        // 4. update Workday.totalTime
         let realm = try! Realm()
         try! realm.write() {
             workday.totalHoursWorked = totalTime
@@ -106,7 +103,7 @@ extension TimeCardViewController {
         return pulledTimes // as Double Array
     }
     
-    //**** returns an array of pairs inside parent array
+    //**** returns an array of timepunch pairs inside parent array
     func sortArrayInPairs(arrayToSort: [Date]) -> [[Date]] {
         var arrayToSort = arrayToSort
         let now = Date()
@@ -120,17 +117,20 @@ extension TimeCardViewController {
         return partitionedArray
     }
     
+    //**** get difference of partitioned pairs and output totalTime in String()
     func addTimeDifferenceFromPairs(partitionedTimes:[[Date]]) -> String {
         var totalTime = String()
         var runningTime = Int()
         for pair in partitionedTimes {
+            //*** get difference in pair in total minutes
             runningTime += pair[0].minutesBeforeDate(pair[1])
         }
-        
+        //*** convert total minutes:Int into (hours:Int ,minutes:Int)
         func minutesToHoursMinutes (minutes: Int) -> (Int, Int) {
             return (minutes / 60, minutes % 60)
         }
         
+        //*** output (hours:Int, minutes:Int) to String
         func convertHoursAndMinutesToString (minutes: Int) -> String{
             let (h, m) = minutesToHoursMinutes(minutes: minutes)
             var result = String()
@@ -144,21 +144,10 @@ extension TimeCardViewController {
         totalTime = convertHoursAndMinutesToString(minutes: runningTime)
         return totalTime
     }
-    
-    
-//    func roundTimes(arrayToSort: [[Date]], toNearest: Double) -> String {
-//        var totalTime = String()
-//        
-//        for time in arrayToSort {
-//            let difference = time[1] - time[0]
-//            let roundedDifference = round(difference)
-//            totalTime += roundedDifference
-//            print("totalTime \(totalTime)")
-//        }
-//        return totalTime
-//    }
 
     
+    
+    //**** set images and status of IN/OUT for timepunch
     func setCurrentStatus(status: Bool) {
         switch status {
         case true:
