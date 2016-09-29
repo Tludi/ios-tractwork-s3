@@ -230,6 +230,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             //        print ("pressed week")
             //        print(weekDays.count)
 //            let workday = weekDays[indexPath.row]
+            getWorkdaysForCurrentWeekday(thisWeeksDays: thisWeeksDays)
             cell.weekHoursLabel.text = String(thisWeeksDays[indexPath.row].day())
 //            cell.totalHoursLabel.text = "\(workday.totalHoursWorked)"
             cell.dayNameLabel.text = thisWeeksDays[indexPath.row].weekdayToString()
