@@ -66,24 +66,26 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var timePunchButtonOutlet: UIButton!
     @IBAction func timePunchButton(_ sender: UIButton) {
         activateToday()
-        try! realm.write {
-            realm.deleteAll()
-        }
-        print("cleared database of all objects")
-//        currentStatus = !currentStatus
-//
-//        
-//        createNewTimePunch(workday: todaysWorkday)
-//        setCurrentStatus(status: currentStatus)
-////        let todaysTimePunches = todaysWorkday.timePunches
-//
-//        
-//        timePunchTable.reloadData()
-//        //    counter += 1
-//        //    totalTimeLabel.text = "\(counter):00"
-//        calculateTotalTime(workday: todaysWorkday)
-//        totalTimeLabel.text = "\(todaysWorkday.totalHoursWorked)"
-////        currentStatusLabel.text = "\(currentStatus)"
+        let workweek = getWorkweek(todaysDate: todaysDate)
+        let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
+//        try! realm.write {
+//            realm.deleteAll()
+//        }
+//        print("cleared database of all objects")
+        currentStatus = !currentStatus
+
+        
+        createNewTimePunch(workday: workday)
+        setCurrentStatus(status: currentStatus)
+//        let todaysTimePunches = todaysWorkday.timePunches
+
+        
+        timePunchTable.reloadData()
+        //    counter += 1
+        //    totalTimeLabel.text = "\(counter):00"
+        calculateTotalTime(workday: workday)
+        totalTimeLabel.text = "\(workday.totalHoursWorked)"
+//        currentStatusLabel.text = "\(currentStatus)"
         
     }
     
@@ -155,24 +157,16 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         //************************************************
         let workweek = getWorkweek(todaysDate: todaysDate)
         
-        var workday = Workday()
-        workday = workday.setCurrentWorkDay(workweek: workweek, workdate: Date())
+//        var workday = Workday()
+        let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
+        
         let weekday = workday.dayDate.weekday() - 1 // - 1 for getting from array
         print(workweek.dayNames[weekday])
         print(workday.dayDate.toString(.custom("EEEE")))
         
-        
-//        print(currentWorkWeek.weekYear)
-        //        todaysWorkday = realm.objects(Workday.self).last!
-//        todaysWorkday = workday.retrieveTodaysWorkday()
-//        let todaysDate = Date()
-        
-//        let todaysDate = todaysWorkday.dayDate.toString(.custom("MMMM dd, yyyy"))
  
         //**** get current in/out status
-//        currentStatus = todaysWorkday.currentStatus
-        
-        
+        currentStatus = workday.currentStatus
         switch currentStatus {
         case true:
             currentStatusLabel.text = "status is punched in."
@@ -181,8 +175,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         }
 
         //**** Set labels
-        dateLabel.text = "\(Date())"
-//        totalTimeLabel.text = "\(todaysWorkday.totalHoursWorked)"
+        dateLabel.text = todaysDate.toString(.custom("MMMM dd, yyyy"))
+        totalTimeLabel.text = "\(workday.totalHoursWorked)"
         
         
         setBaseColors() // set base colors of tables and navbar tabs
@@ -225,27 +219,27 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let todaysTimePunches = todaysWorkday.timePunches.sorted(byProperty: "punchTime", ascending: false)
-        let workweeks = try! Realm().objects(WorkWeek.self)
-//        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
-//        let thisWeeksDays = getDatesOfCurrentWeek(date: todaysWorkDate)
+        let workweek = getWorkweek(todaysDate: todaysDate)
+        let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
+        let todaysTimePunches = workday.timePunches.sorted(byProperty: "punchTime", ascending: false)
+
         let currentWorkWeek = WorkWeek()
         if tableView == timePunchTable {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "timePunchCell") as! TimePunchTableViewCell
             
-//            let timePunch = todaysTimePunches[indexPath.row]
-//            
-//            if timePunch.status {
-//                cell.statusLabel.text = "IN"
-//                cell.statusColorImage.image = UIImage(named: "smGreenCircle")
-//            } else {
-//                cell.statusLabel.text = "OUT"
-//                cell.statusColorImage.image = UIImage(named: "smRedCircle")
-//            }
+            let timePunch = todaysTimePunches[indexPath.row]
+
+            if timePunch.status {
+                cell.statusLabel.text = "IN"
+                cell.statusColorImage.image = UIImage(named: "smGreenCircle")
+            } else {
+                cell.statusLabel.text = "OUT"
+                cell.statusColorImage.image = UIImage(named: "smRedCircle")
+            }
             //        timePunchLabel.text = timePunch.punchTime
-//            cell.timePunchLabel.text = timePunch.punchTime.toString(.custom("hh:mm a"))
-            cell.timePunchLabel.text = "placeholder"
+            cell.timePunchLabel.text = timePunch.punchTime.toString(.custom("hh:mm a"))
+//            cell.timePunchLabel.text = "placeholder"
             //        cell.timePunchLabel.text = "Hello"
             
             return cell
@@ -254,15 +248,13 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             //*** Week Tab  ***//
         } else if tableView == weekTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
-            var workweek = WorkWeek()
-            workweek = workweek.setCurrentWorkWeek(workweeks: workweeks, workdate: Date())
             //        print ("pressed week")
             //        print(weekDays.count)
 //            let workday = weekDays[indexPath.row]
 //            getWorkdaysForCurrentWeekday(thisWeeksDays: thisWeeksDays)
             cell.weekHoursLabel.text = ("\(workweek.workdays[indexPath.row].dayDate.day())")
 //            cell.weekHoursLabel.text = "placeholder"
-//            cell.totalHoursLabel.text = "\(workday.totalHoursWorked)"
+            cell.totalHoursLabel.text = "\(workweek.workdays[indexPath.row].totalHoursWorked)"
             cell.dayNameLabel.text = currentWorkWeek.dayNames[indexPath.row]
             return cell
             

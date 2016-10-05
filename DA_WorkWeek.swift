@@ -37,17 +37,7 @@ extension WorkWeek {
             createWorkdaysForWorkWeek(workweek: workweek)
             print("created workdays for new workweek")
         }
-//        for week in workweeks {
-//            //*** check if workweek with todays date exists
-//            if week.weekNumber == workWeekNumber {
-//                workweek = week
-//            } else {
-//                //*** create workweek if does not exist
-//                workweek = createWorkWeek(workdate: workdate)
-//            }
-//        }
-//        
-        print("workweek function")
+//        print("workweek function")
         return workweek
     }
 }
