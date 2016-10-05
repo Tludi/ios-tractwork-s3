@@ -9,6 +9,22 @@
 import Foundation
 import RealmSwift
 
+extension Workday {
+    
+    func setCurrentWorkDay(workweek: WorkWeek, workdate: Date) -> Workday {
+        var workday = Workday()
+        let workdays = workweek.workdays
+        for day in workdays {
+            if day.dayDate.weekday() == workdate.weekday() {
+                workday = day
+            }
+        }
+        print("from setCurrentWorkday()")
+    
+    
+        return workday
+    }
+}
 //class DA_Workday {
 //    let realm = try! Realm()
 //    let date = DA_Date()

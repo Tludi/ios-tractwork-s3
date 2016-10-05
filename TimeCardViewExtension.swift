@@ -49,6 +49,24 @@ extension TimeCardViewController {
         timePunchTable.reloadData()
     }
     
+    //*** Get current WorkWeek
+    func getWorkweek(todaysDate: Date) -> WorkWeek {
+        let realm = try! Realm()
+        let workweeks = realm.objects(WorkWeek.self)
+        let todaysDate = Date()
+        var workweek = WorkWeek()
+        workweek = workweek.setCurrentWorkWeek(workweeks: workweeks, workdate: todaysDate)
+        return workweek
+    }
+    
+    //*** Get current Workday
+    func getWorkday(workweek: WorkWeek, todaysDate: Date) -> Workday {
+        var workday = Workday()
+        workday = workday.setCurrentWorkDay(workweek: workweek, workdate: todaysDate)
+        return workday
+    }
+    
+    
     
     //*** Creates a new timePunch
     func createNewTimePunch(workday: Workday) {

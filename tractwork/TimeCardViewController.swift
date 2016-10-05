@@ -12,7 +12,7 @@ import RealmSwift
 class TimeCardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let realm = try! Realm()
     var currentStatus = Bool()
-    
+    let todaysDate = Date()
     
     // DA objects
     //***********
@@ -153,11 +153,13 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         
         //*** get or create current workweek with workdays
         //************************************************
-        var workweek = WorkWeek()
-        workweek = workweek.setCurrentWorkWeek(workweeks: workweeks, workdate: Date())
-        print(workweek.dayNames)
-        print(workweek.workdays.first!)
-        print(workweek.workdays.last!)
+        let workweek = getWorkweek(todaysDate: todaysDate)
+        
+        var workday = Workday()
+        workday = workday.setCurrentWorkDay(workweek: workweek, workdate: Date())
+        let weekday = workday.dayDate.weekday() - 1 // - 1 for getting from array
+        print(workweek.dayNames[weekday])
+        print(workday.dayDate.toString(.custom("EEEE")))
         
         
 //        print(currentWorkWeek.weekYear)
@@ -200,6 +202,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+
     
     //**** TableView processing
     //*************************
@@ -209,14 +212,11 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let thisWeeksDays = getDatesOfCurrentWeek(date: todaysWorkDate)
-        
-//        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
+        let workweek = getWorkweek(todaysDate: todaysDate)
+        let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
         
         if tableView == timePunchTable {
-//            let todaysTimePunches = todaysWorkday.timePunches
-//            return todaysTimePunches.count
-            return 5
+            return workday.timePunches.count
         } else if tableView == weekTable {
             return 7
         } else {
@@ -226,6 +226,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let todaysTimePunches = todaysWorkday.timePunches.sorted(byProperty: "punchTime", ascending: false)
+        let workweeks = try! Realm().objects(WorkWeek.self)
 //        let weekDays = try! Realm().objects(Workday.self) // need to limit for this week
 //        let thisWeeksDays = getDatesOfCurrentWeek(date: todaysWorkDate)
         let currentWorkWeek = WorkWeek()
@@ -253,12 +254,14 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             //*** Week Tab  ***//
         } else if tableView == weekTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
+            var workweek = WorkWeek()
+            workweek = workweek.setCurrentWorkWeek(workweeks: workweeks, workdate: Date())
             //        print ("pressed week")
             //        print(weekDays.count)
 //            let workday = weekDays[indexPath.row]
 //            getWorkdaysForCurrentWeekday(thisWeeksDays: thisWeeksDays)
-//            cell.weekHoursLabel.text = String(thisWeeksDays[indexPath.row].day())
-            cell.weekHoursLabel.text = "placeholder"
+            cell.weekHoursLabel.text = ("\(workweek.workdays[indexPath.row].dayDate.day())")
+//            cell.weekHoursLabel.text = "placeholder"
 //            cell.totalHoursLabel.text = "\(workday.totalHoursWorked)"
             cell.dayNameLabel.text = currentWorkWeek.dayNames[indexPath.row]
             return cell

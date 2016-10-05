@@ -30,7 +30,7 @@ extension WorkWeek {
         //*** NOT JUST THE WEEK NUMBER
         if lastRecordedWeek?.weekNumber == workWeekNumber {
             workweek = lastRecordedWeek!
-            print("workweek exist")
+            print("workweek exists")
         } else {
             print("no work week")
             workweek = createWorkWeek(workdate: workdate)
