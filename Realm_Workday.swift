@@ -11,6 +11,20 @@
 import Foundation
 import RealmSwift
 
+class WorkWeek: Object {
+    dynamic var id = ""
+    dynamic var weekYear = Int()
+    dynamic var weekNumber = Int()
+    dynamic var startOfWeek = Date()
+    let workdays = List<Workday>()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+}
+
 class Workday: Object {
     dynamic var id = ""
     dynamic var dayDate = Date()

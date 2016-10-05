@@ -53,18 +53,18 @@ extension TimeCardViewController {
     //*** Creates a new timePunch
     func createNewTimePunch(workday: Workday) {
         let newTimePunch = TimePunch()
-        let todaysTimePunches = todaysWorkday.timePunches
+//        let todaysTimePunches = todaysWorkday.timePunches
         let realm = try! Realm()
         
-        try! realm.write {
-            newTimePunch.id = NSUUID().uuidString
-            newTimePunch.punchTime = Date()
-            print("\(newTimePunch.punchTime) - createNewPunch")
-            newTimePunch.status = currentStatus
-            
-            todaysTimePunches.append(newTimePunch)
-            
-        }
+//        try! realm.write {
+//            newTimePunch.id = NSUUID().uuidString
+//            newTimePunch.punchTime = Date()
+//            print("\(newTimePunch.punchTime) - createNewPunch")
+//            newTimePunch.status = currentStatus
+//            
+//            todaysTimePunches.append(newTimePunch)
+//            
+//        }
     }
     
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Create base workweek if none exist
+        checkForAnyWorkWeeks()
+        
         return true
     }
 
@@ -39,6 +44,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func checkForAnyWorkWeeks() {
+        let realm = try! Realm()
+        let workWeeks = realm.objects(WorkWeek.self)
+        if workWeeks.count == 0 {
+            createInitialWorkWeek()
+        }
+    }
+    
+    func createInitialWorkWeek() {
+        let realm = try! Realm()
+        let workweek = WorkWeek()
+        try! realm.write {
+            workweek.id = NSUUID().uuidString
+            workweek.weekNumber = 555
+            workweek.weekYear = 1980
+            realm.add(workweek)
+            print("created initial workweek")
+        }
     }
 
 
