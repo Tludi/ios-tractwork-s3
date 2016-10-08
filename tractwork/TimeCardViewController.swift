@@ -30,12 +30,17 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     let lightGreyNavColor2 = UIColor(red:144.0/255.0, green: 164.0/255.0, blue: 174.0/255.0, alpha: 0.95)
     let tableColorlt = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 0.8)
     let tableColor = UIColor(red: 38.0/255.0, green: 50.0/255.0, blue: 56.0/255.0, alpha: 0.8)
+    let tableColor2 = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
     
     //**** Labels
     //***********
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var currentStatusLabel: UILabel!
+    
+    //*** Views
+    //*********
+    @IBOutlet weak var tablesContainerView: UIView!
     
     
     //**** Tab Bar Buttons
@@ -74,12 +79,10 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
 //        print("cleared database of all objects")
         currentStatus = !currentStatus
 
-        
         createNewTimePunch(workday: workday)
         setCurrentStatus(status: currentStatus)
 //        let todaysTimePunches = todaysWorkday.timePunches
 
-        
         timePunchTable.reloadData()
         //    counter += 1
         //    totalTimeLabel.text = "\(counter):00"
@@ -183,8 +186,12 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         dateLabel.text = todaysDate.toString(.custom("MMMM dd, yyyy"))
         totalTimeLabel.text = "\(workday.totalHoursWorked)"
         
-        
         setBaseColors() // set base colors of tables and navbar tabs
+        
+        
+        //*** Style container view holding tables and tabs
+        tablesContainerView.layer.cornerRadius = 20
+        tablesContainerView.layer.masksToBounds = true
         
         //**** Set Navbar background to clear
         //***********************************
@@ -220,7 +227,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         } else if tableView == weekTable {
             return 7
         } else {
-            return 4
+//            return 4
+            return getLastFourWorkweeks().count
         }
     }
     
@@ -228,6 +236,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         let workweek = getWorkweek(todaysDate: todaysDate)
         let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
         let todaysTimePunches = workday.timePunches.sorted(byProperty: "punchTime", ascending: false)
+        let lastFourWeeks = getLastFourWorkweeks()
+        
 
         let currentWorkWeek = WorkWeek()
         if tableView == timePunchTable {
@@ -263,10 +273,16 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             cell.totalHoursLabel.text = "\(workweek.workdays[indexPath.row].totalHoursWorked)"
             cell.dayNameLabel.text = currentWorkWeek.dayNames[indexPath.row]
             return cell
+            
+            //*** Four Week Tab ***//
         } else if tableView == fourWeekTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "fourWeekCell") as! FourWeekTableViewCell
-            cell.testLabel.text = "test text"
+            cell.testLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek)"
+//            cell.testLabel.text = "test text"
+            print(getLastFourWorkweeks().count)
             return cell
+            
+            //*** Default base ***//
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notUsed")
             return cell!

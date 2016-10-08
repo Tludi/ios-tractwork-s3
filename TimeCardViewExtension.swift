@@ -23,14 +23,14 @@ extension TimeCardViewController {
         
         //*** set initial colors and status for tables
         //********************************************
-        timePunchStack.backgroundColor = tableColor
-        timePunchTable.backgroundColor = tableColor
-        totalTimeView.backgroundColor = tableColor
+        timePunchStack.backgroundColor = tableColor2
+        timePunchTable.backgroundColor = tableColor2
+        totalTimeView.backgroundColor = tableColor2
         
-        weekTable.backgroundColor = tableColor
+        weekTable.backgroundColor = tableColor2
         weekTable.isHidden = true
         
-        fourWeekTable.backgroundColor = tableColor
+        fourWeekTable.backgroundColor = tableColor2
         fourWeekTable.isHidden = true
         
     }
@@ -68,6 +68,24 @@ extension TimeCardViewController {
         var workday = Workday()
         workday = workday.setCurrentWorkDay(workweek: workweek, workdate: todaysDate)
         return workday
+    }
+    
+    func getLastFourWorkweeks() -> [WorkWeek] {
+        let realm = try! Realm()
+        let workweeks = realm.objects(WorkWeek.self)
+        var lastFourWeeks = [WorkWeek]()
+        if workweeks.count >= 4 {
+            for i in 0..<4 {
+                let week = workweeks[i]
+                lastFourWeeks.append(week)
+            }
+        } else {
+            for week in workweeks {
+                lastFourWeeks.append(week)
+            }
+        }
+        
+        return lastFourWeeks
     }
     
     
