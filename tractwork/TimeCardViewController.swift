@@ -96,8 +96,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var timePunchStack: UIStackView!
     @IBOutlet weak var timePunchTable: UITableView!
     @IBOutlet weak var totalTimeView: UIView!
- 
     @IBOutlet weak var weekTable: UITableView!
+    @IBOutlet weak var fourWeekTable: UITableView!
     
     
     //**** Tables Nav Bar
@@ -122,6 +122,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         fourWeekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
         timePunchStack.isHidden = true
         weekTable.isHidden = false
+        fourWeekTable.isHidden = true
         weekTable.reloadData()
     }
     
@@ -129,12 +130,16 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var fourWeekNavBox: UIView!
     @IBOutlet weak var fourWeekButtonLabel: UIButton!
     @IBAction func fourWeekButton(_ sender: UIButton) {
-        todayNavBox.backgroundColor = darkGreyNavColor
+        todayNavBox.backgroundColor = darkGreyNavColor2
         todayButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
-        weekNavBox.backgroundColor = darkGreyNavColor
-        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
-        fourWeekNavBox.backgroundColor = lightGreyNavColor
-        fourWeekButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
+        weekNavBox.backgroundColor = darkGreyNavColor2
+        weekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        fourWeekNavBox.backgroundColor = lightGreyNavColor2
+        fourWeekButtonLabel.setTitleColor(darkGreyNavColor2, for: .normal)
+        timePunchStack.isHidden = true
+        weekTable.isHidden = true
+        fourWeekTable.isHidden = false
+        fourWeekTable.reloadData()
     }
     
     
@@ -191,6 +196,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         //******************************
         timePunchTable.register(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
         weekTable.register(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
+        fourWeekTable.register(UINib(nibName: "FourWeekTableViewCell", bundle: nil), forCellReuseIdentifier: "fourWeekCell")
         
         
         
@@ -214,7 +220,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         } else if tableView == weekTable {
             return 7
         } else {
-            return 2
+            return 4
         }
     }
     
@@ -257,7 +263,10 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             cell.totalHoursLabel.text = "\(workweek.workdays[indexPath.row].totalHoursWorked)"
             cell.dayNameLabel.text = currentWorkWeek.dayNames[indexPath.row]
             return cell
-            
+        } else if tableView == fourWeekTable {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "fourWeekCell") as! FourWeekTableViewCell
+            cell.testLabel.text = "test text"
+            return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notUsed")
             return cell!

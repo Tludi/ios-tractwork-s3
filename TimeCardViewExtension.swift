@@ -30,6 +30,9 @@ extension TimeCardViewController {
         weekTable.backgroundColor = tableColor
         weekTable.isHidden = true
         
+        fourWeekTable.backgroundColor = tableColor
+        fourWeekTable.isHidden = true
+        
     }
     
     func activateToday() {
@@ -46,6 +49,7 @@ extension TimeCardViewController {
         fourWeekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
         timePunchStack.isHidden = false
         weekTable.isHidden = true
+        fourWeekTable.isHidden = true
         timePunchTable.reloadData()
     }
     

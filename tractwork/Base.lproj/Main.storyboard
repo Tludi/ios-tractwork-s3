@@ -85,8 +85,16 @@
                                             <constraint firstAttribute="height" constant="50" id="KgU-nC-tuY"/>
                                         </constraints>
                                     </stackView>
-                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="20" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XHq-Td-GUN">
+                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42.5" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IvY-RO-1ug">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="ZBr-54-0uO" id="qxg-BB-ulx"/>
+                                            <outlet property="delegate" destination="ZBr-54-0uO" id="69E-fe-BCN"/>
+                                        </connections>
+                                    </tableView>
+                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="24.280000000000001" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XHq-Td-GUN">
                                         <color key="backgroundColor" red="0.51575181449999996" green="0.66666666669999997" blue="0.35114503650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="ZBr-54-0uO" id="uxn-eX-N3b"/>
                                             <outlet property="delegate" destination="ZBr-54-0uO" id="Jsa-qI-1Pi"/>
@@ -137,12 +145,16 @@
                                     <constraint firstAttribute="bottom" secondItem="wMw-Jp-Ift" secondAttribute="bottom" id="7LV-vI-FmN"/>
                                     <constraint firstItem="XHq-Td-GUN" firstAttribute="leading" secondItem="PY0-2A-eJ3" secondAttribute="leading" id="C7h-6P-6fj"/>
                                     <constraint firstItem="wMw-Jp-Ift" firstAttribute="leading" secondItem="PY0-2A-eJ3" secondAttribute="leading" id="LSz-Rp-DHh"/>
+                                    <constraint firstAttribute="bottom" secondItem="IvY-RO-1ug" secondAttribute="bottom" id="PPE-EC-QHx"/>
+                                    <constraint firstAttribute="trailing" secondItem="IvY-RO-1ug" secondAttribute="trailing" id="Uzb-MC-k1U"/>
                                     <constraint firstItem="wMw-Jp-Ift" firstAttribute="top" secondItem="ivo-ZR-yDX" secondAttribute="bottom" id="Wa2-MG-ZaL"/>
                                     <constraint firstAttribute="trailing" secondItem="XHq-Td-GUN" secondAttribute="trailing" id="ap1-BM-v33"/>
                                     <constraint firstItem="ivo-ZR-yDX" firstAttribute="top" secondItem="PY0-2A-eJ3" secondAttribute="top" id="cbr-hf-kxR"/>
                                     <constraint firstAttribute="trailing" secondItem="wMw-Jp-Ift" secondAttribute="trailing" id="hal-j8-iC5"/>
                                     <constraint firstAttribute="bottom" secondItem="XHq-Td-GUN" secondAttribute="bottom" id="hwp-bx-4ca"/>
+                                    <constraint firstItem="IvY-RO-1ug" firstAttribute="leading" secondItem="PY0-2A-eJ3" secondAttribute="leading" id="p8m-8s-suX"/>
                                     <constraint firstAttribute="trailing" secondItem="ivo-ZR-yDX" secondAttribute="trailing" id="rix-Lg-mdh"/>
+                                    <constraint firstItem="IvY-RO-1ug" firstAttribute="top" secondItem="ivo-ZR-yDX" secondAttribute="bottom" id="vvN-bm-U2F"/>
                                     <constraint firstItem="XHq-Td-GUN" firstAttribute="top" secondItem="ivo-ZR-yDX" secondAttribute="bottom" id="wfu-b7-oFG"/>
                                     <constraint firstItem="ivo-ZR-yDX" firstAttribute="leading" secondItem="PY0-2A-eJ3" secondAttribute="leading" id="zRj-i3-AMj"/>
                                 </constraints>
@@ -222,6 +234,7 @@
                         <outlet property="dateLabel" destination="Bxb-0Q-WSl" id="ouP-qX-A7z"/>
                         <outlet property="fourWeekButtonLabel" destination="MHr-0w-hau" id="262-Im-YzW"/>
                         <outlet property="fourWeekNavBox" destination="7Fv-br-Pfm" id="VGp-Qy-elb"/>
+                        <outlet property="fourWeekTable" destination="IvY-RO-1ug" id="vbQ-zL-23o"/>
                         <outlet property="silverTimeButtonRing" destination="7Sp-Kr-Euo" id="ufB-hB-uA3"/>
                         <outlet property="timePunchButtonOutlet" destination="oAY-xA-qUg" id="stJ-QR-eIE"/>
                         <outlet property="timePunchStack" destination="wMw-Jp-Ift" id="PDy-Mt-YZv"/>

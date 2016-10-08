@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00528FD61DA97A9B00A954CD /* FourWeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00528FD41DA97A9B00A954CD /* FourWeekTableViewCell.swift */; };
+		00528FD71DA97A9B00A954CD /* FourWeekTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00528FD51DA97A9B00A954CD /* FourWeekTableViewCell.xib */; };
 		005ABEED1D8F4A7000C873D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */; };
 		005ABEEF1D8F4A7000C873D8 /* TimeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */; };
 		005ABEF21D8F4A7000C873D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005ABEF01D8F4A7000C873D8 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00528FD41DA97A9B00A954CD /* FourWeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourWeekTableViewCell.swift; sourceTree = "<group>"; };
+		00528FD51DA97A9B00A954CD /* FourWeekTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourWeekTableViewCell.xib; sourceTree = "<group>"; };
 		005ABEE91D8F4A7000C873D8 /* tractwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tractwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = tractwork/AppDelegate.swift; sourceTree = "<group>"; };
 		005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				00B8902E1D90C6FC00E39794 /* TimePunchTableViewCell.xib */,
 				00B890311D90CA6500E39794 /* WeekHoursTableViewCell.swift */,
 				00B890321D90CA6500E39794 /* WeekHoursTableViewCell.xib */,
+				00528FD41DA97A9B00A954CD /* FourWeekTableViewCell.swift */,
+				00528FD51DA97A9B00A954CD /* FourWeekTableViewCell.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 				005ABEF71D8F4A7000C873D8 /* LaunchScreen.storyboard in Resources */,
 				005ABEF41D8F4A7000C873D8 /* Assets.xcassets in Resources */,
 				00B890341D90CA6500E39794 /* WeekHoursTableViewCell.xib in Resources */,
+				00528FD71DA97A9B00A954CD /* FourWeekTableViewCell.xib in Resources */,
 				005ABEFF1D8F4AA900C873D8 /* Podfile in Resources */,
 				005ABEF21D8F4A7000C873D8 /* Main.storyboard in Resources */,
 			);
@@ -303,6 +310,7 @@
 				00CD0D2E1D94ADFC00AEBA3D /* TestCollectionViewController.swift in Sources */,
 				00B890231D90711900E39794 /* Realm_Workday.swift in Sources */,
 				005ABEEF1D8F4A7000C873D8 /* TimeCardViewController.swift in Sources */,
+				00528FD61DA97A9B00A954CD /* FourWeekTableViewCell.swift in Sources */,
 				00B890261D90767700E39794 /* DA_Workday.swift in Sources */,
 				00B8902A1D90B97C00E39794 /* TimeCardViewExtension.swift in Sources */,
 				00C9F0391D9C6E0C0030FFD4 /* DA_WorkWeek.swift in Sources */,
