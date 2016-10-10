@@ -25,9 +25,11 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     // App colors
     //***********
     let darkGreyNavColor = UIColor(red: 6.0/255.0, green: 60.0/255.0, blue: 54.0/255.0, alpha: 0.95)
-    let darkGreyNavColor2 = UIColor(red: 38.0/255.0, green: 50.0/255.0, blue: 56.0/255.0, alpha: 0.95)
+    let darkGreyNavColor2 = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.7)
+    let darkGreyNavColor3 = UIColor(red: 38.0/255.0, green: 50.0/255.0, blue: 56.0/255.0, alpha: 0.95)
     let lightGreyNavColor = UIColor(red: 136.0/255.0, green: 166.0/255.0, blue: 173.0/255.0, alpha: 0.95)
-    let lightGreyNavColor2 = UIColor(red:144.0/255.0, green: 164.0/255.0, blue: 174.0/255.0, alpha: 0.95)
+    let lightGreyNavColor2 = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+    let lightGreyNavColor3 = UIColor(red:144.0/255.0, green: 164.0/255.0, blue: 174.0/255.0, alpha: 0.95)
     let tableColorlt = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 0.8)
     let tableColor = UIColor(red: 38.0/255.0, green: 50.0/255.0, blue: 56.0/255.0, alpha: 0.8)
     let tableColor2 = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
@@ -118,11 +120,11 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var weekButtonLabel: UIButton!
     @IBAction func weekButton(_ sender: UIButton) {
         todayNavBox.backgroundColor = darkGreyNavColor2
-        todayButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        todayButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         weekNavBox.backgroundColor = lightGreyNavColor2
-        weekButtonLabel.setTitleColor(darkGreyNavColor2, for: .normal)
+        weekButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = darkGreyNavColor2
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         timePunchStack.isHidden = true
         weekTable.isHidden = false
         fourWeekTable.isHidden = true
@@ -136,9 +138,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         todayNavBox.backgroundColor = darkGreyNavColor2
         todayButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         weekNavBox.backgroundColor = darkGreyNavColor2
-        weekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = lightGreyNavColor2
-        fourWeekButtonLabel.setTitleColor(darkGreyNavColor2, for: .normal)
+        fourWeekButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
         timePunchStack.isHidden = true
         weekTable.isHidden = true
         fourWeekTable.isHidden = false
@@ -277,7 +279,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             //*** Four Week Tab ***//
         } else if tableView == fourWeekTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "fourWeekCell") as! FourWeekTableViewCell
-            cell.testLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek)"
+            cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.day())"
 //            cell.testLabel.text = "test text"
             print(getLastFourWorkweeks().count)
             return cell

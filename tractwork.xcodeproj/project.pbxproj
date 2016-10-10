@@ -76,7 +76,7 @@
 			children = (
 				005ABEEB1D8F4A7000C873D8 /* tractwork */,
 				00B8902B1D90BB6600E39794 /* Extensions */,
-				00B8902C1D90C6A300E39794 /* Nibs */,
+				00B8902C1D90C6A300E39794 /* Custom Cells */,
 				00B890241D90719B00E39794 /* Models */,
 				00B8901E1D9066B400E39794 /* Support Files */,
 				005ABEEA1D8F4A7000C873D8 /* Products */,
@@ -145,7 +145,7 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		00B8902C1D90C6A300E39794 /* Nibs */ = {
+		00B8902C1D90C6A300E39794 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
 				00B8902D1D90C6FC00E39794 /* TimePunchTableViewCell.swift */,
@@ -155,7 +155,7 @@
 				00528FD41DA97A9B00A954CD /* FourWeekTableViewCell.swift */,
 				00528FD51DA97A9B00A954CD /* FourWeekTableViewCell.xib */,
 			);
-			name = Nibs;
+			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		0B0BECA26F88100B39547913 /* Frameworks */ = {

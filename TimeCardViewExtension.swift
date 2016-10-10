@@ -15,11 +15,11 @@ extension TimeCardViewController {
         //*** set initial colors for nav tabs
         //***********************************
         todayNavBox.backgroundColor = lightGreyNavColor2
-        todayButtonLabel.setTitleColor(darkGreyNavColor2, for: .normal)
+        todayButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
         weekNavBox.backgroundColor = darkGreyNavColor2
-        weekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = darkGreyNavColor2
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         
         //*** set initial colors and status for tables
         //********************************************
@@ -42,11 +42,11 @@ extension TimeCardViewController {
         //**** selecting the clock in/out button
         //**************************************
         todayNavBox.backgroundColor = lightGreyNavColor2
-        todayButtonLabel.setTitleColor(darkGreyNavColor2, for: .normal)
+        todayButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
         weekNavBox.backgroundColor = darkGreyNavColor2
-        weekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = darkGreyNavColor2
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor2, for: .normal)
+        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
         timePunchStack.isHidden = false
         weekTable.isHidden = true
         fourWeekTable.isHidden = true
@@ -193,11 +193,11 @@ extension TimeCardViewController {
         case true:
             currentStatusLabel.text = "status is punched in."
             print("status is punched in.")
-            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "OutRedButton"), for: [])
+            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "outbutton"), for: [])
         case false:
             currentStatusLabel.text = "status is punched out."
             print("status is punched out.")
-            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "InGreenButton"), for: [])
+            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "inbutton"), for: [])
         }
     }
     

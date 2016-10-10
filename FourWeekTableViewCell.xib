@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,10 +13,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="43"/>
+                <frame key="frameInset" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZW-Uq-i4N">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EndDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZW-Uq-i4N">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StartDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kY-z8-beg">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TotalHours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtN-oY-pst">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ev-nt-YYZ">
+                        <frame key="frameInset" minX="94" minY="11" width="25" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -23,13 +40,21 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="2Ev-nt-YYZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AgG-7k-OBt"/>
+                    <constraint firstItem="2Ev-nt-YYZ" firstAttribute="leading" secondItem="3kY-z8-beg" secondAttribute="trailing" constant="5" id="JyQ-KG-TYo"/>
+                    <constraint firstItem="3kY-z8-beg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="LcG-Rd-BwR"/>
                     <constraint firstItem="YZW-Uq-i4N" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kVX-wd-UhT"/>
+                    <constraint firstItem="XtN-oY-pst" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="m0a-sv-3OR"/>
+                    <constraint firstItem="XtN-oY-pst" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="tTu-ra-Gb3"/>
+                    <constraint firstItem="3kY-z8-beg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wxF-If-B1u"/>
                     <constraint firstItem="YZW-Uq-i4N" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="zvz-po-7e9"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="testLabel" destination="YZW-Uq-i4N" id="4Yq-76-rUM"/>
+                <outlet property="endDateLabel" destination="YZW-Uq-i4N" id="hHe-05-J8F"/>
+                <outlet property="startDateLabel" destination="3kY-z8-beg" id="itb-e7-Qcw"/>
+                <outlet property="totalHoursLabel" destination="XtN-oY-pst" id="k51-Xo-1l7"/>
             </connections>
         </tableViewCell>
     </objects>
