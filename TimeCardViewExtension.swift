@@ -123,7 +123,6 @@ extension TimeCardViewController {
     //*** 4. update Workday.totalTime:String
     
     func calculateTotalTime(workday: Workday) {
-
         // 1. get the dayDate:(Date) for each punchtime for workday and put in array
         let pulledTimes:[Date] = pullTimePunchTimes(timePunches: workday.timePunches) // [Double]
         print(pulledTimes)
@@ -131,7 +130,7 @@ extension TimeCardViewController {
         // 2. partition Double array into pairs
         let partitionedTimes:[[Date]] = sortArrayInPairs(arrayToSort: pulledTimes) // [[Double]]
         // 3. get difference in each in/out punches and add to total
-        let totalTime = addTimeDifferenceFromPairs(partitionedTimes: partitionedTimes)
+        let totalTime = addTimeDifferenceFromPairs(partitionedTimes: partitionedTimes, workday: workday)
         
         // 4. update Workday.totalTime
         let realm = try! Realm()
@@ -166,13 +165,24 @@ extension TimeCardViewController {
     }
     
     //**** get difference of partitioned pairs and output totalTime in String()
-    func addTimeDifferenceFromPairs(partitionedTimes:[[Date]]) -> String {
+    func addTimeDifferenceFromPairs(partitionedTimes:[[Date]], workday: Workday) -> String {
         var totalTime = String()
         var runningTime = Int()
+        let workweek = getWorkweek(todaysDate: workday.dayDate)
+        var workweekTime = workweek.totalWeekMinutes
+        
         for pair in partitionedTimes {
             //*** get difference in pair in total minutes
             runningTime += pair[0].minutesBeforeDate(pair[1])
+            workweekTime += runningTime
         }
+        
+        //*** update current weeks total times
+        let realm = try! Realm()
+        try! realm.write {
+            workweek.totalWeekMinutes = workweekTime
+        }
+        
         //*** convert total minutes:Int into (hours:Int ,minutes:Int)
         func minutesToHoursMinutes (minutes: Int) -> (Int, Int) {
             return (minutes / 60, minutes % 60)
@@ -191,6 +201,16 @@ extension TimeCardViewController {
         }
         totalTime = convertHoursAndMinutesToString(minutes: runningTime)
         return totalTime
+    }
+    
+    func calculateTotalWeekTime() {
+        let workweek = getWorkweek(todaysDate: todaysDate)
+        let workdays = workweek.workdays
+        var totalWeekHours = Double()
+        for day in workdays {
+            let dayHours = Double(day.totalHoursWorked)
+            totalWeekHours += dayHours!  // only works if string format is 0.0
+        }
     }
 
     

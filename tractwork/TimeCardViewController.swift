@@ -305,7 +305,10 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             //*** Four Week Tab ***//
         } else if tableView == fourWeekTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "fourWeekCell") as! FourWeekTableViewCell
-            cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.day())"
+            
+            cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.toString(.custom("MM/dd/yyyy")))"
+            cell.endDateLabel.text = "\(lastFourWeeks[indexPath.row].endOfWeek.toString(.custom("MM/dd/yyyy")))"
+            cell.totalHoursLabel.text = "\(lastFourWeeks[indexPath.row].totalWeekMinutes)"
 //            cell.testLabel.text = "test text"
             print(getLastFourWorkweeks().count)
             return cell
