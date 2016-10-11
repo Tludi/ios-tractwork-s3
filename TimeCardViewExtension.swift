@@ -70,6 +70,7 @@ extension TimeCardViewController {
         return workday
     }
     
+    //*** Get last four workweeks
     func getLastFourWorkweeks() -> [WorkWeek] {
         let realm = try! Realm()
         let workweeks = realm.objects(WorkWeek.self)
@@ -91,7 +92,7 @@ extension TimeCardViewController {
     
     
     //*** Creates a new timePunch
-    func createNewTimePunch(workday: Workday) {
+    func createNewTimePunch(workday: Workday, newStatus: Bool ) {
         let newTimePunch = TimePunch()
         let todaysTimePunches = workday.timePunches
         let realm = try! Realm()
@@ -100,10 +101,17 @@ extension TimeCardViewController {
             newTimePunch.id = NSUUID().uuidString
             newTimePunch.punchTime = Date()
             print("\(newTimePunch.punchTime) - createNewPunch")
-            newTimePunch.status = currentStatus
+            newTimePunch.status = newStatus
             
             todaysTimePunches.append(newTimePunch)
             
+        }
+    }
+    
+    func setWorkdayStatus(workday: Workday, newStatus: Bool ){
+        let realm = try! Realm()
+        try! realm.write {
+            workday.currentStatus = newStatus
         }
     }
     
@@ -188,7 +196,7 @@ extension TimeCardViewController {
     
     
     //**** set images and status of IN/OUT for timepunch
-    func setCurrentStatus(status: Bool) {
+    func setCurrentStatusImages(status: Bool) {
         switch status {
         case true:
             currentStatusLabel.text = "status is punched in."
