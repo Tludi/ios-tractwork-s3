@@ -32,6 +32,8 @@ class Workday: Object {
     dynamic var dayDate = Date()
     dynamic var project = "general work"
     dynamic var totalHoursWorked = "0:00"
+    dynamic var totalWorkdayMinutes: Int = 0
+    
     dynamic var worker = "milo"
     dynamic var currentStatus = false
     

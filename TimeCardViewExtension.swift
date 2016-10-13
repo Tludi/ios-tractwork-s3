@@ -133,9 +133,12 @@ extension TimeCardViewController {
         let totalTime = addTimeDifferenceFromPairs(partitionedTimes: partitionedTimes, workday: workday)
         
         // 4. update Workday.totalTime
+        let workweek = getWorkweek(todaysDate: workday.dayDate.dateAtStartOfWeek())
+        
         let realm = try! Realm()
         try! realm.write() {
             workday.totalHoursWorked = totalTime
+            workweek.totalWeekMinutes = calculateTotalWeekTime(workweek: workweek)
         }
     }
     
@@ -168,19 +171,19 @@ extension TimeCardViewController {
     func addTimeDifferenceFromPairs(partitionedTimes:[[Date]], workday: Workday) -> String {
         var totalTime = String()
         var runningTime = Int()
-        let workweek = getWorkweek(todaysDate: workday.dayDate)
-        var workweekTime = workweek.totalWeekMinutes
+//        let workweek = getWorkweek(todaysDate: workday.dayDate)
+//        var workweekTime = workweek.totalWeekMinutes
         
         for pair in partitionedTimes {
             //*** get difference in pair in total minutes
             runningTime += pair[0].minutesBeforeDate(pair[1])
-            workweekTime += runningTime
+//            workweekTime += runningTime
         }
         
-        //*** update current weeks total times
+        //*** update current workdays total time in minutes
         let realm = try! Realm()
         try! realm.write {
-            workweek.totalWeekMinutes = workweekTime
+            workday.totalWorkdayMinutes = runningTime
         }
         
         //*** convert total minutes:Int into (hours:Int ,minutes:Int)
@@ -203,14 +206,14 @@ extension TimeCardViewController {
         return totalTime
     }
     
-    func calculateTotalWeekTime() {
-        let workweek = getWorkweek(todaysDate: todaysDate)
+    func calculateTotalWeekTime(workweek: WorkWeek) -> Int {
         let workdays = workweek.workdays
-        var totalWeekHours = Double()
+        var totalWeekMinutes = Int()
         for day in workdays {
-            let dayHours = Double(day.totalHoursWorked)
-            totalWeekHours += dayHours!  // only works if string format is 0.0
+            let dayMinutes = day.totalWorkdayMinutes
+            totalWeekMinutes += dayMinutes
         }
+        return totalWeekMinutes
     }
 
     

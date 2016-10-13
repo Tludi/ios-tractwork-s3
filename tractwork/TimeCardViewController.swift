@@ -103,6 +103,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
  
         calculateTotalTime(workday: workday)
         totalTimeLabel.text = "\(workday.totalHoursWorked)"
+        print("total minutes for this week \(workweek.totalWeekMinutes)")
         
     }
     
@@ -274,10 +275,10 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
 
             if timePunch.status {
                 cell.statusLabel.text = "IN"
-                cell.statusColorImage.image = UIImage(named: "smGreenCircle")
+                cell.statusColorImage.image = UIImage(named: "INRing")
             } else {
                 cell.statusLabel.text = "OUT"
-                cell.statusColorImage.image = UIImage(named: "smRedCircle")
+                cell.statusColorImage.image = UIImage(named: "OutRing")
             }
             //        timePunchLabel.text = timePunch.punchTime
             cell.timePunchLabel.text = timePunch.punchTime.toString(.custom("hh:mm a"))
@@ -304,11 +305,13 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             
             //*** Four Week Tab ***//
         } else if tableView == fourWeekTable {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "fourWeekCell") as! FourWeekTableViewCell
             
             cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.toString(.custom("MM/dd/yyyy")))"
             cell.endDateLabel.text = "\(lastFourWeeks[indexPath.row].endOfWeek.toString(.custom("MM/dd/yyyy")))"
-            cell.totalHoursLabel.text = "\(lastFourWeeks[indexPath.row].totalWeekMinutes)"
+//            cell.totalHoursLabel.text = "\(lastFourWeeks[indexPath.row].totalWeekMinutes)"
+            
 //            cell.testLabel.text = "test text"
             print(getLastFourWorkweeks().count)
             return cell
