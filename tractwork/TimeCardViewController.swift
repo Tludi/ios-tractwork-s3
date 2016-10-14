@@ -193,8 +193,11 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         switch currentStatus {
         case true:
             currentStatusLabel.text = "status is punched in."
+            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "outbutton"), for: [])
         case false:
             currentStatusLabel.text = "status is punched out."
+            timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "inbutton"), for: [])
+            
         }
 
         //**** Set labels
@@ -264,12 +267,16 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
         let todaysTimePunches = workday.timePunches.sorted(byProperty: "punchTime", ascending: false)
         let lastFourWeeks = getLastFourWorkweeks()
-        
-
         let currentWorkWeek = WorkWeek()
+        
+        //*** TimePunch tab for workday
         if tableView == timePunchTable {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "timePunchCell") as! TimePunchTableViewCell
+            
+            // get timePunchPair for each cell
+            let timePunchPair = [TimePunch]()
+            
             
             let timePunch = todaysTimePunches[indexPath.row]
 
