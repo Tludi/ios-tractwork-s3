@@ -255,7 +255,7 @@ extension TimeCardViewController {
         }
         let pairedTimePunches = partitionPunches(punches: pulledTimePunches, subSet: 2)
         
-        return pairedTimePunches
+        return pairedTimePunches.reversed()
     }
     
     func returnPairTimeDifference(timeIn: TimePunch, timeOut: TimePunch) -> String {

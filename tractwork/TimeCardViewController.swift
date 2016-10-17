@@ -276,20 +276,13 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "timePunchCell") as! TimePunchTableViewCell
             
             // get timePunchPair for each cell
-            let timePunchPairs = returnTimePunchPairsForTable(workday: workday)
-            for punch in timePunchPairs {
-                if timePunchPairs.last?.count == 2 {
-                    print("\(punch[0].punchTime), \(punch[1].punchTime)")
-                } else {
-                    print(punch.first?.punchTime)
-                }
-            }
+            var timePunchPairs = returnTimePunchPairsForTable(workday: workday)
             
 //            let timePunch = todaysTimePunches[indexPath.row]
             let timePunchPair = timePunchPairs[indexPath.row]
 
             cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
-            if timePunchPairs.last?.count == 2 {
+            if timePunchPair.count == 2 {
                 cell.outLabel.text = timePunchPair[1].punchTime.toString(.custom("h:mm"))
                 cell.punchPairTime.text = returnPairTimeDifference(timeIn: timePunchPair[0], timeOut: timePunchPair[1])
             } else {
