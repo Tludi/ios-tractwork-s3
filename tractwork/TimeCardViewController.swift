@@ -103,7 +103,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
  
         calculateTotalTime(workday: workday)
         totalTimeLabel.text = "\(workday.totalHoursWorked)"
-        print("total minutes for this week \(workweek.totalWeekMinutes)")
+//        print("total minutes for this week \(workweek.totalWeekMinutes)")
         
     }
     
@@ -174,7 +174,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         //********************************************
         let realm = try! Realm()
         let workweeks = realm.objects(WorkWeek.self)
-        print("\(workweeks.count) workweeks in database")
+//        print("\(workweeks.count) workweeks in database")
         
         //*** get or create current workweek with workdays
         //************************************************
@@ -246,7 +246,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
         
         if tableView == timePunchTable {
-            return workday.timePunches.count
+//            return workday.timePunches.count
+            return returnTimePunchPairsForTable(workday: workday).count
         } else if tableView == weekTable {
             return 7
         } else {
@@ -275,22 +276,31 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "timePunchCell") as! TimePunchTableViewCell
             
             // get timePunchPair for each cell
-            let timePunchPair = [TimePunch]()
-            
-            
-            let timePunch = todaysTimePunches[indexPath.row]
-
-            if timePunch.status {
-                cell.statusLabel.text = "IN"
-                cell.statusColorImage.image = UIImage(named: "INRing")
-            } else {
-                cell.statusLabel.text = "OUT"
-                cell.statusColorImage.image = UIImage(named: "OutRing")
+            let timePunchPairs = returnTimePunchPairsForTable(workday: workday)
+            for punch in timePunchPairs {
+                if timePunchPairs.last?.count == 2 {
+                    print("\(punch[0].punchTime), \(punch[1].punchTime)")
+                } else {
+                    print(punch.first?.punchTime)
+                }
             }
-            //        timePunchLabel.text = timePunch.punchTime
-            cell.timePunchLabel.text = timePunch.punchTime.toString(.custom("hh:mm a"))
-//            cell.timePunchLabel.text = "placeholder"
-            //        cell.timePunchLabel.text = "Hello"
+            
+//            let timePunch = todaysTimePunches[indexPath.row]
+            let timePunchPair = timePunchPairs[indexPath.row]
+
+            cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
+            if timePunchPairs.last?.count == 2 {
+                cell.outLabel.text = timePunchPair[1].punchTime.toString(.custom("h:mm"))
+                cell.punchPairTime.text = returnPairTimeDifference(timeIn: timePunchPair[0], timeOut: timePunchPair[1])
+            } else {
+                cell.outLabel.text = " "
+                cell.punchPairTime.text = "Working"
+            }
+            
+            cell.inRing.image = UIImage(named: "INRing")
+            cell.outRing.image = UIImage(named: "OutRing")
+
+//            cell.punchPairTime.text = "placeholder"
             
             return cell
             
@@ -320,7 +330,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
 //            cell.totalHoursLabel.text = "\(lastFourWeeks[indexPath.row].totalWeekMinutes)"
             
 //            cell.testLabel.text = "test text"
-            print(getLastFourWorkweeks().count)
+//            print(getLastFourWorkweeks().count)
             return cell
             
             //*** Default base ***//

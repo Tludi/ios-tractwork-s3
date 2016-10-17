@@ -19,7 +19,7 @@ extension Workday {
                 workday = day
             }
         }
-        print("from setCurrentWorkday()")
+//        print("from setCurrentWorkday()")
         return workday
     }
     

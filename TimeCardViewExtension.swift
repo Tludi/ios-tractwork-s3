@@ -125,7 +125,7 @@ extension TimeCardViewController {
     func calculateTotalTime(workday: Workday) {
         // 1. get the dayDate:(Date) for each punchtime for workday and put in array
         let pulledTimes:[Date] = pullTimePunchTimes(timePunches: workday.timePunches) // [Double]
-        print(pulledTimes)
+//        print(pulledTimes)
 
         // 2. partition Double array into pairs
         let partitionedTimes:[[Date]] = sortArrayInPairs(arrayToSort: pulledTimes) // [[Double]]
@@ -149,7 +149,7 @@ extension TimeCardViewController {
         for time in timePunches {
             pulledTimes.append(time.punchTime)
         }
-        print("\(pulledTimes) - pullTimePunchTimes Double Array")
+//        print("\(pulledTimes) - pullTimePunchTimes Double Array")
         return pulledTimes // as Double Array
     }
     
@@ -163,7 +163,7 @@ extension TimeCardViewController {
         }
         
         let partitionedArray:[[Date]] = arrayToSort.partitionArray(subSet: 2)
-        print("partitioned array \(partitionedArray)")
+//        print("partitioned array \(partitionedArray)")
         return partitionedArray
     }
     
@@ -230,6 +230,56 @@ extension TimeCardViewController {
             print("status is punched out.")
             timePunchButtonOutlet.setImage(#imageLiteral(resourceName: "inbutton"), for: [])
         }
+    }
+    
+    // sort timepunches in pairs for each cell
+    func returnTimePunchPairsForTable(workday: Workday) -> [[TimePunch]] {
+        let pulledTimePunches = workday.timePunches
+        //        let sortedTimePunches:[[List<TimePunch>]] = pulledTimePunches.partitionArray(subSet: 2)
+        
+        func partitionPunches(punches: List<TimePunch>, subSet:Int) -> [[TimePunch]] {
+            var pair = [TimePunch]()
+            var timePunchPairs = [[TimePunch]]()
+            
+            for punch in punches {
+                if pair.count >= subSet {
+                    timePunchPairs.append(pair)
+                    pair.removeAll()
+                }
+                if pair.count < subSet {
+                    pair.append(punch)
+                }
+            }
+            timePunchPairs.append(pair)
+            return timePunchPairs
+        }
+        let pairedTimePunches = partitionPunches(punches: pulledTimePunches, subSet: 2)
+        
+        return pairedTimePunches
+    }
+    
+    func returnPairTimeDifference(timeIn: TimePunch, timeOut: TimePunch) -> String {
+        var timeDifference = String()
+        var runningTime = timeIn.punchTime.minutesBeforeDate(timeOut.punchTime)
+
+        func minutesToHoursMinutes (minutes: Int) -> (Int, Int) {
+            return (minutes / 60, minutes % 60)
+        }
+        
+        //*** output (hours:Int, minutes:Int) to String
+        func convertHoursAndMinutesToString (minutes: Int) -> String{
+            let (h, m) = minutesToHoursMinutes(minutes: minutes)
+            var result = String()
+            if m < 10 {
+                result = "\(h):0\(m)"
+            } else {
+                result = "\(h):\(m)"
+            }
+            return result
+        }
+        timeDifference = convertHoursAndMinutesToString(minutes: runningTime)
+        return timeDifference
+        
     }
     
 }
