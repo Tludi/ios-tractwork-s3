@@ -281,13 +281,28 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
 //            let timePunch = todaysTimePunches[indexPath.row]
             let timePunchPair = timePunchPairs[indexPath.row]
 
-            cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
             if timePunchPair.count == 2 {
+                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
                 cell.outLabel.text = timePunchPair[1].punchTime.toString(.custom("h:mm"))
                 cell.punchPairTime.text = returnPairTimeDifference(timeIn: timePunchPair[0], timeOut: timePunchPair[1])
-            } else {
+                cell.inRing.isHidden = false
+                cell.inLabel.isHidden = false
+                cell.outRing.isHidden = false
+                cell.outLabel.isHidden = false
+            } else if timePunchPair.count == 1 {
+                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
                 cell.outLabel.text = " "
                 cell.punchPairTime.text = "Working"
+                cell.inRing.isHidden = false
+                cell.inLabel.isHidden = false
+                cell.outRing.isHidden = true
+                cell.outLabel.isHidden = true
+            } else {
+                cell.punchPairTime.text = "No Punches for today"
+                cell.inRing.isHidden = true
+                cell.inLabel.isHidden = true
+                cell.outRing.isHidden = true
+                cell.outLabel.isHidden = true
             }
             
             cell.inRing.image = UIImage(named: "INRing")
