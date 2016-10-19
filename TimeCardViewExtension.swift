@@ -213,6 +213,7 @@ extension TimeCardViewController {
             let dayMinutes = day.totalWorkdayMinutes
             totalWeekMinutes += dayMinutes
         }
+        print("total minutes for week - \(totalWeekMinutes)")
         return totalWeekMinutes
     }
 
@@ -260,26 +261,32 @@ extension TimeCardViewController {
     
     func returnPairTimeDifference(timeIn: TimePunch, timeOut: TimePunch) -> String {
         var timeDifference = String()
-        var runningTime = timeIn.punchTime.minutesBeforeDate(timeOut.punchTime)
+        let runningTime = timeIn.punchTime.minutesBeforeDate(timeOut.punchTime)
 
-        func minutesToHoursMinutes (minutes: Int) -> (Int, Int) {
-            return (minutes / 60, minutes % 60)
-        }
-        
-        //*** output (hours:Int, minutes:Int) to String
-        func convertHoursAndMinutesToString (minutes: Int) -> String{
-            let (h, m) = minutesToHoursMinutes(minutes: minutes)
-            var result = String()
-            if m < 10 {
-                result = "\(h):0\(m)"
-            } else {
-                result = "\(h):\(m)"
-            }
-            return result
-        }
         timeDifference = convertHoursAndMinutesToString(minutes: runningTime)
         return timeDifference
-        
     }
     
+    //*** convert mintutes to hours and mintutes
+    func minutesToHoursMinutes (minutes: Int) -> (Int, Int) {
+        return (minutes / 60, minutes % 60)
+    }
+    
+    //*** output (hours:Int, minutes:Int) to String
+    func convertHoursAndMinutesToString (minutes: Int) -> String{
+        let (h, m) = minutesToHoursMinutes(minutes: minutes)
+        var result = String()
+        if m < 10 {
+            result = "\(h):0\(m)"
+        } else {
+            result = "\(h):\(m)"
+        }
+        return result
+    }
+    
+    
+    func returnWeekHoursAndMinutes(week: WorkWeek) -> String {
+        let weekTime: String = convertHoursAndMinutesToString(minutes: week.totalWeekMinutes)
+        return weekTime
+    }
 }
