@@ -17,9 +17,10 @@ extension TimeCardViewController {
         todayNavBox.backgroundColor = lightGreyNavColor2
         todayButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
         weekNavBox.backgroundColor = darkGreyNavColor2
-        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+//        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        weekButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = darkGreyNavColor2
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        fourWeekButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         
         //*** set initial colors and status for tables
         //********************************************
@@ -43,10 +44,11 @@ extension TimeCardViewController {
         //**************************************
         todayNavBox.backgroundColor = lightGreyNavColor2
         todayButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
+        todayButtonLabel.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12.0)
         weekNavBox.backgroundColor = darkGreyNavColor2
-        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        weekButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = darkGreyNavColor2
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        fourWeekButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         timePunchStack.isHidden = false
         weekTable.isHidden = true
         fourWeekTable.isHidden = true

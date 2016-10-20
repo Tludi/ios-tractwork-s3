@@ -33,6 +33,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     let tableColorlt = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 0.8)
     let tableColor = UIColor(red: 38.0/255.0, green: 50.0/255.0, blue: 56.0/255.0, alpha: 0.8)
     let tableColor2 = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
+    let lightBlueNavColor = UIColor(red: 66.0/255.0, green: 165.0/255.0, blue: 245.0/255.0, alpha: 0.9)
     
     //**** Labels
     //***********
@@ -133,11 +134,11 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var weekButtonLabel: UIButton!
     @IBAction func weekButton(_ sender: UIButton) {
         todayNavBox.backgroundColor = darkGreyNavColor2
-        todayButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        todayButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         weekNavBox.backgroundColor = lightGreyNavColor2
         weekButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = darkGreyNavColor2
-        fourWeekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        fourWeekButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         timePunchStack.isHidden = true
         weekTable.isHidden = false
         fourWeekTable.isHidden = true
@@ -149,9 +150,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var fourWeekButtonLabel: UIButton!
     @IBAction func fourWeekButton(_ sender: UIButton) {
         todayNavBox.backgroundColor = darkGreyNavColor2
-        todayButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        todayButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         weekNavBox.backgroundColor = darkGreyNavColor2
-        weekButtonLabel.setTitleColor(lightGreyNavColor, for: .normal)
+        weekButtonLabel.setTitleColor(lightBlueNavColor, for: .normal)
         fourWeekNavBox.backgroundColor = lightGreyNavColor2
         fourWeekButtonLabel.setTitleColor(darkGreyNavColor, for: .normal)
         timePunchStack.isHidden = true
