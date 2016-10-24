@@ -173,8 +173,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         
         //**** process current workday and timepunches
         //********************************************
-        let realm = try! Realm()
-        let workweeks = realm.objects(WorkWeek.self)
+//        let realm = try! Realm()
+//        let workweeks = realm.objects(WorkWeek.self)
 //        print("\(workweeks.count) workweeks in database")
         
         //*** get or create current workweek with workdays
@@ -267,7 +267,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let workweek = getWorkweek(todaysDate: todaysDate)
         let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
-        let todaysTimePunches = workday.timePunches.sorted(byProperty: "punchTime", ascending: false)
+//        let todaysTimePunches = workday.timePunches.sorted(byProperty: "punchTime", ascending: false)
         let lastFourWeeks = getLastFourWorkweeks()
         let currentWorkWeek = WorkWeek()
         
