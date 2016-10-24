@@ -9,9 +9,11 @@
 import UIKit
 
 class TimePunchTableViewCell: UITableViewCell {
-    @IBOutlet weak var timePunchLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var statusColorImage: UIImageView!
+    @IBOutlet weak var punchPairTime: UILabel!
+    @IBOutlet weak var outLabel: UILabel!
+    @IBOutlet weak var inLabel: UILabel!
+    @IBOutlet weak var outRing: UIImageView!
+    @IBOutlet weak var inRing: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

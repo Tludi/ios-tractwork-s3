@@ -22,13 +22,12 @@ extension WorkWeek {
     func setCurrentWorkWeek(workweeks: Results<WorkWeek>, workdate: Date) -> WorkWeek {
         var workweek = WorkWeek()
         let workWeekNumber = workdate.week() // number of the week of the year
+        let workWeekYear = workdate.year()
         let lastRecordedWeek = workweeks.last
         
         
         //*** check if current work week exists
-        //*** NEED TO CHECK AGAINST CURRENT YEAR - WorkWeek.weekYear
-        //*** NOT JUST THE WEEK NUMBER
-        if lastRecordedWeek?.weekNumber == workWeekNumber {
+        if lastRecordedWeek?.weekNumber == workWeekNumber && lastRecordedWeek?.weekYear == workWeekYear {
             workweek = lastRecordedWeek!
             print("workweek exists")
         } else {
@@ -51,6 +50,7 @@ func createWorkWeek(workdate: Date) -> WorkWeek{
         workweek.weekNumber = workdate.week()
         workweek.weekYear = workdate.year()
         workweek.startOfWeek = workdate.dateAtStartOfWeek()
+        workweek.endOfWeek = workdate.dateAtEndOfWeek()
         realm.add(workweek)
         print(workweek)
     }

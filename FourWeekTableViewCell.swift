@@ -10,7 +10,9 @@ import UIKit
 
 class FourWeekTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var totalHoursLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
