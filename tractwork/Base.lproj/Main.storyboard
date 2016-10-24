@@ -270,7 +270,7 @@
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="next" id="RKO-8T-cgT">
                             <connections>
-                                <segue destination="Thg-Vj-pjt" kind="show" id="rk6-xo-Ee9"/>
+                                <segue destination="NbC-Fm-HeE" kind="show" id="ebz-Cq-2pm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -298,50 +298,40 @@
             </objects>
             <point key="canvasLocation" x="604" y="-99.400299850074973"/>
         </scene>
-        <!--Test Collection View Controller-->
-        <scene sceneID="Dz8-qo-KgC">
+        <!--Workdays-->
+        <scene sceneID="emW-gA-9ZA">
             <objects>
-                <collectionViewController id="Thg-Vj-pjt" customClass="TestCollectionViewController" customModule="tractwork" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Q2t-25-Anw">
+                <tableViewController id="NbC-Fm-HeE" customClass="WorkWeeksTableViewController" customModule="tractwork" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BtF-sH-dou">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QZs-cm-O0k">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCollectionCell" id="Lwm-L3-W6h">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="workWeekCell" id="AJ5-Rx-Zdj">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AJ5-Rx-Zdj" id="R4m-9L-MsM">
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExI-tj-E8n">
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="ExI-tj-E8n" firstAttribute="centerX" secondItem="Lwm-L3-W6h" secondAttribute="centerX" id="ofS-t8-DM1"/>
-                                    <constraint firstItem="ExI-tj-E8n" firstAttribute="centerY" secondItem="Lwm-L3-W6h" secondAttribute="centerY" id="qBV-tG-0IZ"/>
-                                </constraints>
-                            </collectionViewCell>
-                        </cells>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="Thg-Vj-pjt" id="t8u-C8-4Rw"/>
-                            <outlet property="delegate" destination="Thg-Vj-pjt" id="HZS-dg-s6I"/>
+                            <outlet property="dataSource" destination="NbC-Fm-HeE" id="biq-VH-7LV"/>
+                            <outlet property="delegate" destination="NbC-Fm-HeE" id="2ev-gD-cPA"/>
                         </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b21-2p-awL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Workdays" id="g5J-0k-44b">
+                        <barButtonItem key="rightBarButtonItem" title="Print" id="jq0-2T-3c7">
+                            <connections>
+                                <action selector="printButton:" destination="NbC-Fm-HeE" id="wUg-nm-2a9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bs3-VS-5Pm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418" y="-99"/>
+            <point key="canvasLocation" x="1486" y="-99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cP2-vN-4hi">
