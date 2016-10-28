@@ -1,0 +1,70 @@
+//
+//  PDFManager.swift
+//  tractwork
+//
+//  Created by manatee on 10/27/16.
+//  Copyright © 2016 diligentagility. All rights reserved.
+//
+
+import UIKit
+
+class PDFManager: NSObject {
+    
+    // MARK: - Writing a PDF
+    
+    func writeData(data: NSData) {
+        
+        let documentsDirectory = self.documentsDirectory()
+        
+        let path = "\(documentsDirectory)/\(NSDate()).pdf"
+        
+        do {
+            try data.write(toFile: path, options: .atomicWrite)
+        }
+        catch let e {
+            print("Error writing '\(data.length)' bytes of PDF to file. Error: \(e)")
+        }
+    }
+    
+    // MARK: - Reading a PDF
+    
+    func PDFAtPath(path:String) -> NSData? {
+        
+        let pathToPDF = "\(self.documentsDirectory())/\(path)"
+        
+        let data = NSData(contentsOfFile: pathToPDF)
+        
+        return data
+    }
+    
+    // MARK: - PDFs in a Directory
+    
+    func filesInDocumentsDirectory () -> [String] {
+        
+        let documentsPath = documentsDirectory()
+        
+        do {
+            let PDFs = try FileManager.default.contentsOfDirectory(atPath: documentsPath)
+            
+            return PDFs
+        }
+        catch let e {
+            print("Failed to find documents at path. Error: \(e)")
+        }
+        
+        return []
+    }
+    
+    // MARK: - Documents Directory
+    
+    func documentsDirectory() -> String {
+        
+        let documentsDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if let directory = documentsDirectories.first {
+            return directory
+        }
+        
+        return ""
+        
+    }
+}

@@ -1,57 +1,29 @@
 //
-//  WorkWeeksTableViewController.swift
+//  ReportsTableViewController.swift
 //  tractwork
 //
-//  Created by manatee on 10/24/16.
+//  Created by manatee on 10/27/16.
 //  Copyright © 2016 diligentagility. All rights reserved.
 //
 
 import UIKit
-import RealmSwift
 
-
-class WorkWeeksTableViewController: UITableViewController {
-    let realm = try! Realm()
-    let workWeeks = try! Realm().objects(WorkWeek.self)
-    
-    
-    @IBOutlet var workdayTable: UITableView!
-    
-    @IBAction func printButton(_ sender: UIBarButtonItem) {
-        let printController = UIPrintInteractionController.shared
-        let printInfo = UIPrintInfo(dictionary: nil)
-        printInfo.jobName = "test Print"
-        printInfo.outputType = .general
+class ReportsTableViewController: UITableViewController, UIDocumentInteractionControllerDelegate {
+    func updatePaths(notification: Notification?) {
+        let manager = PDFManager()
         
-        printController.printInfo = printInfo
-        printController.printFormatter = UIViewPrintFormatter()
+        self.PDFPaths = manager.filesInDocumentsDirectory()
         
-        let formatter = UIViewPrintFormatter()
-//        formatter.
-//        let formatter = UIMarkupTextPrintFormatter(markupText: "hello test printer")
-        formatter.perPageContentInsets = UIEdgeInsetsMake(72, 72, 72, 72)
-        printController.printFormatter = formatter
-        
-        printController.present(animated: true, completionHandler: nil)
-        
+        self.tableView.reloadData()
     }
     
-    @IBAction func pdfRecords(_ sender: AnyObject) {
-        if let workTable = self.tableView {
-            let report = Report()
-            let data = report.PDFWithScrollView(scrollView: workTable)
-            let manager = PDFManager()
-            manager.writeData(data: data)
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "com.diligentagility.pdf-saved"), object: nil)
-            
-        }
-    }
-    
-    
-    
+    var PDFPaths: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        let notificationName = Notification.Name("com.diligentagility.pdf-saved")
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePaths), name: notificationName, object: nil)
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -59,6 +31,12 @@ class WorkWeeksTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        self.updatePaths(notification: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,30 +44,60 @@ class WorkWeeksTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Week \(workWeeks[section].weekNumber)"
-    }
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return workWeeks.count
+        // #warning Incomplete implementation, return the number of sections
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  
-        return workWeeks[section].workdays.count
-        
+        // #warning Incomplete implementation, return the number of rows
+        return self.PDFPaths.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workWeekCell", for: indexPath)
-
-        cell.textLabel?.text = workWeeks[indexPath.section].workdays[indexPath.row].dayDate.toString()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recordCell", for: indexPath)
+        
+        if indexPath.row < self.PDFPaths.count {
+            let index = self.PDFPaths.startIndex.advanced(by: indexPath.row)
+            let path = self.PDFPaths[index]
+            
+            cell.textLabel?.text = path.components(separatedBy: "/").last
+        }
 
         return cell
     }
-
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row < self.PDFPaths.count {
+            
+            
+            let path = self.PDFPaths[self.PDFPaths.startIndex.advanced(by: indexPath.row)]
+            
+            let manager = PDFManager()
+            let fullPath = "\(manager.documentsDirectory())/\(path)"
+            
+            let url = URL(fileURLWithPath: fullPath)
+            
+            let interactionController = UIDocumentInteractionController(url: url)
+            interactionController.delegate = self
+            
+            if interactionController.presentPreview(animated: true) {
+                print("Presented preview.")
+            }
+            else
+            {
+                print("Did not present preview.")
+            }
+        }
+        
+    }
+    
+    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

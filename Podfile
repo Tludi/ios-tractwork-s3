@@ -10,7 +10,7 @@ target 'tractwork' do
   pod "RealmSwift", '~> 1.1'
 #  pod "Firebase/Core"
 #  pod "Firebase/AdMob"
-#  pod "AFDateHelper" added AFDateHelper by files
+ pod 'PDFGenerator', '~> 2.0'
 end
 
 post_install do |installer|
