@@ -13,8 +13,8 @@ import PDFGenerator
 
 class WorkWeeksTableViewController: UITableViewController {
     let realm = try! Realm()
-    let workWeeks = try! Realm().objects(WorkWeek.self)
-    
+    var workWeeks = try! Realm().objects(WorkWeek.self).filter("weekNumber != 555")
+
     
     @IBOutlet var workdayTable: UITableView!
     
@@ -89,6 +89,7 @@ class WorkWeeksTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(workWeeks.count)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -103,13 +104,14 @@ class WorkWeeksTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return workWeeks.count
+    }
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Week \(workWeeks[section].weekNumber)"
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return workWeeks.count
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
   

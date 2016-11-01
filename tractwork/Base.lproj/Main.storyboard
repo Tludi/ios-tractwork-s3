@@ -350,14 +350,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Workdays" id="g5J-0k-44b">
-                        <barButtonItem key="leftBarButtonItem" title="PDF" id="IW3-eR-wyc">
+                        <barButtonItem key="rightBarButtonItem" title="PDF" id="IW3-eR-wyc">
                             <connections>
                                 <action selector="pdfRecords:" destination="NbC-Fm-HeE" id="5zl-yi-Jlh"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Reports" id="SDq-nE-X5B">
-                            <connections>
-                                <segue destination="Bc7-NY-9Fo" kind="show" id="UdY-fI-TGD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -337,7 +337,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.toString(.custom("MM/dd/yyyy")))"
             cell.endDateLabel.text = "\(lastFourWeeks[indexPath.row].endOfWeek.toString(.custom("MM/dd/yyyy")))"
             cell.totalHoursLabel.text = returnWeekHoursAndMinutes(week: lastFourWeeks[indexPath.row])
-            
+            cell.weekNumber.text = String(lastFourWeeks[indexPath.row].weekNumber)
 //            cell.testLabel.text = "test text"
 //            print(getLastFourWorkweeks().count)
             return cell

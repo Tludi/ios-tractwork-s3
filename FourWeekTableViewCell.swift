@@ -13,6 +13,7 @@ class FourWeekTableViewCell: UITableViewCell {
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var totalHoursLabel: UILabel!
+    @IBOutlet weak var weekNumber: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
