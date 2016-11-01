@@ -9,6 +9,7 @@
 import UIKit
 
 class ReportsTableViewController: UITableViewController, UIDocumentInteractionControllerDelegate {
+    
     func updatePaths(notification: Notification?) {
         let manager = PDFManager()
         

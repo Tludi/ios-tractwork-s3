@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import PDFGenerator
 
 
 class WorkWeeksTableViewController: UITableViewController {
@@ -17,36 +18,72 @@ class WorkWeeksTableViewController: UITableViewController {
     
     @IBOutlet var workdayTable: UITableView!
     
-    @IBAction func printButton(_ sender: UIBarButtonItem) {
-        let printController = UIPrintInteractionController.shared
-        let printInfo = UIPrintInfo(dictionary: nil)
-        printInfo.jobName = "test Print"
-        printInfo.outputType = .general
+//    @IBAction func printButton(_ sender: UIBarButtonItem) {
+//        let printController = UIPrintInteractionController.shared
+//        let printInfo = UIPrintInfo(dictionary: nil)
+//        printInfo.jobName = "test Print"
+//        printInfo.outputType = .general
+//        
+//        printController.printInfo = printInfo
+//        printController.printFormatter = UIViewPrintFormatter()
+//        
+//        let formatter = UIViewPrintFormatter()
+////        formatter.
+////        let formatter = UIMarkupTextPrintFormatter(markupText: "hello test printer")
+//        formatter.perPageContentInsets = UIEdgeInsetsMake(72, 72, 72, 72)
+//        printController.printFormatter = formatter
+//        
+//        printController.present(animated: true, completionHandler: nil)
+//        
+//    }
+    
+    @IBAction func pdfRecords(_ sender: AnyObject) {
+//        if let workTable = self.tableView {
+//            let report = Report()
+//            let data = report.PDFWithScrollView(scrollView: workTable)
+//            let manager = PDFManager()
+//            manager.writeData(data: data)
+//            
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "com.diligentagility.pdf-saved"), object: nil)
+//            
+//        }
+        let fileFolder =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let destination = URL(fileURLWithPath: fileFolder.appending("/tractwork.pdf"))
         
-        printController.printInfo = printInfo
-        printController.printFormatter = UIViewPrintFormatter()
         
-        let formatter = UIViewPrintFormatter()
-//        formatter.
-//        let formatter = UIMarkupTextPrintFormatter(markupText: "hello test printer")
-        formatter.perPageContentInsets = UIEdgeInsetsMake(72, 72, 72, 72)
-        printController.printFormatter = formatter
         
-        printController.present(animated: true, completionHandler: nil)
+        generatePDF(destination: destination)
+        openPDFViewer(fileFolder.appending("/tractwork.pdf"))
+    }
+    
+    func generatePDF(destination: URL) {
+        do {
+            let data = try PDFGenerator.generated(by: [workdayTable])
+            try data.write(to: destination, options: .atomic)
+        } catch (let error) {
+            print(error)
+        }
+        
+        do {
+            try PDFGenerator.generate([workdayTable], to: destination)
+        } catch (let error) {
+            print(error)
+        }
         
     }
     
-    @IBAction func pdfRecords(_ sender: AnyObject) {
-        if let workTable = self.tableView {
-            let report = Report()
-            let data = report.PDFWithScrollView(scrollView: workTable)
-            let manager = PDFManager()
-            manager.writeData(data: data)
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "com.diligentagility.pdf-saved"), object: nil)
-            
-        }
+    fileprivate func openPDFViewer(_ pdfPath: String) {
+        let url = URL(fileURLWithPath: pdfPath)
+        let storyboard = UIStoryboard(name: "PDFPreviewVC", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController() as! PDFPreviewVC
+        vc.setupWithURL(url)
+        present(vc, animated: true, completion: nil)
     }
+    
+    
+    
+    
+    
     
     
     
@@ -89,7 +126,10 @@ class WorkWeeksTableViewController: UITableViewController {
         return cell
     }
 
-
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
