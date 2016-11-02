@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		000DD5241DC2BE7600BCB46E /* PDFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000DD5231DC2BE7600BCB46E /* PDFManager.swift */; };
-		000DD5261DC2C24900BCB46E /* ReportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000DD5251DC2C24900BCB46E /* ReportsTableViewController.swift */; };
+		000DD5261DC2C24900BCB46E /* DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000DD5251DC2C24900BCB46E /* DayTableViewController.swift */; };
 		004CB93A1DC3ED73007D39B3 /* PDFPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CB9391DC3ED73007D39B3 /* PDFPreviewVC.swift */; };
-		004CB93C1DC401E6007D39B3 /* PDFViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004CB93B1DC401E6007D39B3 /* PDFViewController.storyboard */; };
 		004CB93E1DC4021F007D39B3 /* PDFPreviewVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004CB93D1DC4021F007D39B3 /* PDFPreviewVC.storyboard */; };
 		00528FD61DA97A9B00A954CD /* FourWeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00528FD41DA97A9B00A954CD /* FourWeekTableViewCell.swift */; };
 		00528FD71DA97A9B00A954CD /* FourWeekTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00528FD51DA97A9B00A954CD /* FourWeekTableViewCell.xib */; };
@@ -31,17 +30,16 @@
 		00B890341D90CA6500E39794 /* WeekHoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B890321D90CA6500E39794 /* WeekHoursTableViewCell.xib */; };
 		00B890361D90CD2E00E39794 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890351D90CD2E00E39794 /* GeneralExtensions.swift */; };
 		00C9F0391D9C6E0C0030FFD4 /* DA_WorkWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9F0381D9C6E0C0030FFD4 /* DA_WorkWeek.swift */; };
-		00CE2CD41DBEB3BE00F4E53D /* WorkWeeksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE2CD31DBEB3BE00F4E53D /* WorkWeeksTableViewController.swift */; };
+		00CE2CD41DBEB3BE00F4E53D /* WeekTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE2CD31DBEB3BE00F4E53D /* WeekTableViewController.swift */; };
 		00CE2CD61DC1751400F4E53D /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE2CD51DC1751400F4E53D /* Reports.swift */; };
 		5A7EA1C6E43385A7D0CE527D /* Pods_tractwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3328B384E302251AE030E698 /* Pods_tractwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		000DD5231DC2BE7600BCB46E /* PDFManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFManager.swift; sourceTree = "<group>"; };
-		000DD5251DC2C24900BCB46E /* ReportsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsTableViewController.swift; sourceTree = "<group>"; };
-		004CB9391DC3ED73007D39B3 /* PDFPreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPreviewVC.swift; sourceTree = "<group>"; };
-		004CB93B1DC401E6007D39B3 /* PDFViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PDFViewController.storyboard; sourceTree = "<group>"; };
-		004CB93D1DC4021F007D39B3 /* PDFPreviewVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PDFPreviewVC.storyboard; sourceTree = "<group>"; };
+		000DD5231DC2BE7600BCB46E /* PDFManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PDFManager.swift; path = tractwork/PDFManager.swift; sourceTree = "<group>"; };
+		000DD5251DC2C24900BCB46E /* DayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTableViewController.swift; sourceTree = "<group>"; };
+		004CB9391DC3ED73007D39B3 /* PDFPreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PDFPreviewVC.swift; path = tractwork/PDFPreviewVC.swift; sourceTree = "<group>"; };
+		004CB93D1DC4021F007D39B3 /* PDFPreviewVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = PDFPreviewVC.storyboard; path = tractwork/PDFPreviewVC.storyboard; sourceTree = "<group>"; };
 		00528FD41DA97A9B00A954CD /* FourWeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourWeekTableViewCell.swift; sourceTree = "<group>"; };
 		00528FD51DA97A9B00A954CD /* FourWeekTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourWeekTableViewCell.xib; sourceTree = "<group>"; };
 		005ABEE91D8F4A7000C873D8 /* tractwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tractwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,8 +62,8 @@
 		00B890321D90CA6500E39794 /* WeekHoursTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekHoursTableViewCell.xib; sourceTree = "<group>"; };
 		00B890351D90CD2E00E39794 /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		00C9F0381D9C6E0C0030FFD4 /* DA_WorkWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DA_WorkWeek.swift; sourceTree = "<group>"; };
-		00CE2CD31DBEB3BE00F4E53D /* WorkWeeksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkWeeksTableViewController.swift; sourceTree = "<group>"; };
-		00CE2CD51DC1751400F4E53D /* Reports.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
+		00CE2CD31DBEB3BE00F4E53D /* WeekTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTableViewController.swift; sourceTree = "<group>"; };
+		00CE2CD51DC1751400F4E53D /* Reports.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reports.swift; path = tractwork/Reports.swift; sourceTree = "<group>"; };
 		3328B384E302251AE030E698 /* Pods_tractwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tractwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90873A58A7A9D321CE4D1CD3 /* Pods-tractwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.debug.xcconfig"; sourceTree = "<group>"; };
 		B3854ABD1A4D8198559ACCAA /* Pods-tractwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,15 +108,10 @@
 		005ABEEB1D8F4A7000C873D8 /* tractwork */ = {
 			isa = PBXGroup;
 			children = (
-				004CB93B1DC401E6007D39B3 /* PDFViewController.storyboard */,
 				005ABEF01D8F4A7000C873D8 /* Main.storyboard */,
 				005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */,
-				00CE2CD31DBEB3BE00F4E53D /* WorkWeeksTableViewController.swift */,
-				00CE2CD51DC1751400F4E53D /* Reports.swift */,
-				000DD5231DC2BE7600BCB46E /* PDFManager.swift */,
-				000DD5251DC2C24900BCB46E /* ReportsTableViewController.swift */,
-				004CB9391DC3ED73007D39B3 /* PDFPreviewVC.swift */,
-				004CB93D1DC4021F007D39B3 /* PDFPreviewVC.storyboard */,
+				00CE2CD31DBEB3BE00F4E53D /* WeekTableViewController.swift */,
+				000DD5251DC2C24900BCB46E /* DayTableViewController.swift */,
 			);
 			path = tractwork;
 			sourceTree = "<group>";
@@ -135,6 +128,8 @@
 		00B8901E1D9066B400E39794 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				00CE2CD51DC1751400F4E53D /* Reports.swift */,
+				000DD5231DC2BE7600BCB46E /* PDFManager.swift */,
 				005ABEEC1D8F4A7000C873D8 /* AppDelegate.swift */,
 				005ABEF81D8F4A7000C873D8 /* Info.plist */,
 				005ABEF31D8F4A7000C873D8 /* Assets.xcassets */,
@@ -166,6 +161,8 @@
 		00B8902C1D90C6A300E39794 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				004CB93D1DC4021F007D39B3 /* PDFPreviewVC.storyboard */,
+				004CB9391DC3ED73007D39B3 /* PDFPreviewVC.swift */,
 				00B8902D1D90C6FC00E39794 /* TimePunchTableViewCell.swift */,
 				00B8902E1D90C6FC00E39794 /* TimePunchTableViewCell.xib */,
 				00B890311D90CA6500E39794 /* WeekHoursTableViewCell.swift */,
@@ -223,7 +220,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = diligentagility;
 				TargetAttributes = {
 					005ABEE81D8F4A7000C873D8 = {
@@ -261,7 +258,6 @@
 				005ABEF71D8F4A7000C873D8 /* LaunchScreen.storyboard in Resources */,
 				005ABEF41D8F4A7000C873D8 /* Assets.xcassets in Resources */,
 				00B890341D90CA6500E39794 /* WeekHoursTableViewCell.xib in Resources */,
-				004CB93C1DC401E6007D39B3 /* PDFViewController.storyboard in Resources */,
 				00528FD71DA97A9B00A954CD /* FourWeekTableViewCell.xib in Resources */,
 				005ABEFF1D8F4AA900C873D8 /* Podfile in Resources */,
 				004CB93E1DC4021F007D39B3 /* PDFPreviewVC.storyboard in Resources */,
@@ -326,7 +322,7 @@
 			files = (
 				00B890361D90CD2E00E39794 /* GeneralExtensions.swift in Sources */,
 				005ABF071D8F7C4A00C873D8 /* DateHelper.swift in Sources */,
-				000DD5261DC2C24900BCB46E /* ReportsTableViewController.swift in Sources */,
+				000DD5261DC2C24900BCB46E /* DayTableViewController.swift in Sources */,
 				00B890331D90CA6500E39794 /* WeekHoursTableViewCell.swift in Sources */,
 				00B890231D90711900E39794 /* Realm_Workday.swift in Sources */,
 				005ABEEF1D8F4A7000C873D8 /* TimeCardViewController.swift in Sources */,
@@ -338,7 +334,7 @@
 				00C9F0391D9C6E0C0030FFD4 /* DA_WorkWeek.swift in Sources */,
 				00B890281D9079E500E39794 /* DA_Date.swift in Sources */,
 				005ABEED1D8F4A7000C873D8 /* AppDelegate.swift in Sources */,
-				00CE2CD41DBEB3BE00F4E53D /* WorkWeeksTableViewController.swift in Sources */,
+				00CE2CD41DBEB3BE00F4E53D /* WeekTableViewController.swift in Sources */,
 				00B8902F1D90C6FC00E39794 /* TimePunchTableViewCell.swift in Sources */,
 				004CB93A1DC3ED73007D39B3 /* PDFPreviewVC.swift in Sources */,
 			);

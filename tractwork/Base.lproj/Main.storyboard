@@ -296,11 +296,6 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="next" id="RKO-8T-cgT">
-                            <connections>
-                                <segue destination="NbC-Fm-HeE" kind="show" id="ebz-Cq-2pm"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="currentStatusLabel" destination="iHI-fL-Ft7" id="9Wo-Qh-dh3"/>
@@ -320,6 +315,7 @@
                         <outlet property="weekButtonLabel" destination="MAE-Fk-j36" id="i0R-q1-0Ed"/>
                         <outlet property="weekNavBox" destination="b0V-G8-ZUi" id="OJb-vA-xpu"/>
                         <outlet property="weekTable" destination="XHq-Td-GUN" id="e3I-Bm-Q4n"/>
+                        <segue destination="NbC-Fm-HeE" kind="show" identifier="showWeekSegue" id="2d5-Qz-Y2z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjO-qQ-Gi1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -329,7 +325,7 @@
         <!--Workdays-->
         <scene sceneID="emW-gA-9ZA">
             <objects>
-                <tableViewController id="NbC-Fm-HeE" customClass="WorkWeeksTableViewController" customModule="tractwork" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="NbC-Fm-HeE" customClass="WeekTableViewController" customModule="tractwork" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BtF-sH-dou">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -339,7 +335,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AJ5-Rx-Zdj" id="R4m-9L-MsM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -358,16 +354,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="workdayTable" destination="BtF-sH-dou" id="N9C-OB-6rw"/>
+                        <segue destination="Bc7-NY-9Fo" kind="show" identifier="showDaySegue" id="r6z-6v-tFd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bs3-VS-5Pm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486" y="-99"/>
+            <point key="canvasLocation" x="1428" y="-99"/>
         </scene>
-        <!--Reports Table View Controller-->
+        <!--Day Table View Controller-->
         <scene sceneID="naX-nf-opk">
             <objects>
-                <tableViewController id="Bc7-NY-9Fo" customClass="ReportsTableViewController" customModule="tractwork" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Bc7-NY-9Fo" customClass="DayTableViewController" customModule="tractwork" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vt4-ht-XXg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,10 +393,13 @@
                             <outlet property="delegate" destination="Bc7-NY-9Fo" id="8ky-Qh-Ld9"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="dayTable" destination="Vt4-ht-XXg" id="on6-T6-eTT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMh-41-bfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2305" y="-99"/>
+            <point key="canvasLocation" x="2278" y="-99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cP2-vN-4hi">

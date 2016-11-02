@@ -11,10 +11,12 @@ import RealmSwift
 import PDFGenerator
 
 
-class WorkWeeksTableViewController: UITableViewController {
+class WeekTableViewController: UITableViewController {
     let realm = try! Realm()
     var workWeeks = try! Realm().objects(WorkWeek.self).filter("weekNumber != 555")
-
+    var testText = String()
+    var passedWeek = WorkWeek()
+    
     
     @IBOutlet var workdayTable: UITableView!
     
@@ -90,6 +92,9 @@ class WorkWeeksTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(workWeeks.count)
+        self.navigationItem.title = testText
+        
+        workdayTable.register(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -105,31 +110,55 @@ class WorkWeeksTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return workWeeks.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Week \(workWeeks[section].weekNumber)"
+        return "Week \(passedWeek.weekNumber)"
     }
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
   
-        return workWeeks[section].workdays.count
+        return passedWeek.workdays.count
         
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workWeekCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
 
-        cell.textLabel?.text = workWeeks[indexPath.section].workdays[indexPath.row].dayDate.toString()
+//        cell.textLabel?.text = passedWeek.workdays[indexPath.row].dayDate.toString()
+        cell.weekHoursLabel.text = ("\(passedWeek.workdays[indexPath.row].dayDate.day())")
+        cell.totalHoursLabel.text = "\(passedWeek.workdays[indexPath.row].totalHoursWorked)"
+        cell.dayNameLabel.text = passedWeek.dayNames[indexPath.row]
+        
 
         return cell
     }
 
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) != nil {
+            let cell = tableView.cellForRow(at: indexPath)
+            self.performSegue(withIdentifier: "showDaySegue", sender: cell)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDaySegue" {
+            if let destintionController = segue.destination as? DayTableViewController {
+                if let indexPath = self.workdayTable.indexPathForSelectedRow {
+                    let dayToPass = passedWeek.workdays[indexPath.row]
+                    destintionController.passedDay = dayToPass
+                }
+            }
+        }
     }
     
     /*
