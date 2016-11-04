@@ -20,6 +20,8 @@
 		005ABEF71D8F4A7000C873D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005ABEF51D8F4A7000C873D8 /* LaunchScreen.storyboard */; };
 		005ABEFF1D8F4AA900C873D8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 005ABEFE1D8F4AA900C873D8 /* Podfile */; };
 		005ABF071D8F7C4A00C873D8 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ABF061D8F7C4A00C873D8 /* DateHelper.swift */; };
+		0076E4CE1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0076E4CC1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.swift */; };
+		0076E4CF1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0076E4CD1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.xib */; };
 		00B890231D90711900E39794 /* Realm_Workday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890221D90711900E39794 /* Realm_Workday.swift */; };
 		00B890261D90767700E39794 /* DA_Workday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890251D90767700E39794 /* DA_Workday.swift */; };
 		00B890281D9079E500E39794 /* DA_Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B890271D9079E500E39794 /* DA_Date.swift */; };
@@ -52,6 +54,8 @@
 		005ABEFE1D8F4AA900C873D8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		005ABF051D8F7C3C00C873D8 /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
 		005ABF061D8F7C4A00C873D8 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		0076E4CC1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTimePunchTableViewCell.swift; sourceTree = "<group>"; };
+		0076E4CD1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleTimePunchTableViewCell.xib; sourceTree = "<group>"; };
 		00B890221D90711900E39794 /* Realm_Workday.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm_Workday.swift; sourceTree = "<group>"; };
 		00B890251D90767700E39794 /* DA_Workday.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DA_Workday.swift; sourceTree = "<group>"; };
 		00B890271D9079E500E39794 /* DA_Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DA_Date.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				00B890321D90CA6500E39794 /* WeekHoursTableViewCell.xib */,
 				00528FD41DA97A9B00A954CD /* FourWeekTableViewCell.swift */,
 				00528FD51DA97A9B00A954CD /* FourWeekTableViewCell.xib */,
+				0076E4CC1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.swift */,
+				0076E4CD1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.xib */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 				005ABEF71D8F4A7000C873D8 /* LaunchScreen.storyboard in Resources */,
 				005ABEF41D8F4A7000C873D8 /* Assets.xcassets in Resources */,
 				00B890341D90CA6500E39794 /* WeekHoursTableViewCell.xib in Resources */,
+				0076E4CF1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.xib in Resources */,
 				00528FD71DA97A9B00A954CD /* FourWeekTableViewCell.xib in Resources */,
 				005ABEFF1D8F4AA900C873D8 /* Podfile in Resources */,
 				004CB93E1DC4021F007D39B3 /* PDFPreviewVC.storyboard in Resources */,
@@ -323,6 +330,7 @@
 				00B890361D90CD2E00E39794 /* GeneralExtensions.swift in Sources */,
 				005ABF071D8F7C4A00C873D8 /* DateHelper.swift in Sources */,
 				000DD5261DC2C24900BCB46E /* DayTableViewController.swift in Sources */,
+				0076E4CE1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.swift in Sources */,
 				00B890331D90CA6500E39794 /* WeekHoursTableViewCell.swift in Sources */,
 				00B890231D90711900E39794 /* Realm_Workday.swift in Sources */,
 				005ABEEF1D8F4A7000C873D8 /* TimeCardViewController.swift in Sources */,

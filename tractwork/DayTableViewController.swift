@@ -38,6 +38,7 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
 
     override func viewDidLoad() {
         dayTable.register(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
+        dayTable.register(UINib(nibName: "SingleTimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "singleTimePunchCell")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,52 +60,54 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return returnTimePunchPairsForTable(workday: passedDay).count
+        return passedDay.timePunches.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "timePunchCell", for: indexPath)
         
-        if tableView == dayTable {
-            let timePunchPairs = returnTimePunchPairsForTable(workday: passedDay)
-            let cell = tableView.dequeueReusableCell(withIdentifier: "timePunchCell") as! TimePunchTableViewCell
+            let timePunches = passedDay.timePunches
+            let cell = tableView.dequeueReusableCell(withIdentifier: "singleTimePunchCell") as! SingleTimePunchTableViewCell
             
             // get timePunchPair for each cell
-            let timePunchPair = timePunchPairs[indexPath.row]
+            let timePunch = timePunches[indexPath.row]
             
-            //*** Display and hide cell details based on number of punches in a pair of timePunches
-            if timePunchPair.count == 2 {
-                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
-                cell.outLabel.text = timePunchPair[1].punchTime.toString(.custom("h:mm"))
-                cell.punchPairTime.text = returnPairTimeDifference(timeIn: timePunchPair[0], timeOut: timePunchPair[1])
-                cell.inRing.isHidden = false
-                cell.inLabel.isHidden = false
-                cell.outRing.isHidden = false
-                cell.outLabel.isHidden = false
-            } else if timePunchPair.count == 1 {
-                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
-                cell.outLabel.text = " "
-                cell.punchPairTime.text = "Working"
-                cell.inRing.isHidden = false
-                cell.inLabel.isHidden = false
-                cell.outRing.isHidden = true
-                cell.outLabel.isHidden = true
+            cell.statusRing.image = UIImage(named: "INRing")
+            if timePunch.status {
+                cell.statusLabel.text = "IN"
             } else {
-                cell.punchPairTime.text = "No Punches for today"
-                cell.inRing.isHidden = true
-                cell.inLabel.isHidden = true
-                cell.outRing.isHidden = true
-                cell.outLabel.isHidden = true
+                cell.statusLabel.text = "OUT"
             }
-            
-            cell.inRing.image = UIImage(named: "INRing")
-            cell.outRing.image = UIImage(named: "OutRing")
+            cell.punchTimeLabel.text = timePunch.punchTime.toString(.custom("h:mm"))
+//            //*** Display and hide cell details based on number of punches in a pair of timePunches
+//            if timePunchPair.count == 2 {
+//                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
+//                cell.outLabel.text = timePunchPair[1].punchTime.toString(.custom("h:mm"))
+//                cell.punchPairTime.text = returnPairTimeDifference(timeIn: timePunchPair[0], timeOut: timePunchPair[1])
+//                cell.inRing.isHidden = false
+//                cell.inLabel.isHidden = false
+//                cell.outRing.isHidden = false
+//                cell.outLabel.isHidden = false
+//            } else if timePunchPair.count == 1 {
+//                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
+//                cell.outLabel.text = " "
+//                cell.punchPairTime.text = "Working"
+//                cell.inRing.isHidden = false
+//                cell.inLabel.isHidden = false
+//                cell.outRing.isHidden = true
+//                cell.outLabel.isHidden = true
+//            } else {
+//                cell.punchPairTime.text = "No Punches for today"
+//                cell.inRing.isHidden = true
+//                cell.inLabel.isHidden = true
+//                cell.outRing.isHidden = true
+//                cell.outLabel.isHidden = true
+//            }
+//            
+//            cell.inRing.image = UIImage(named: "INRing")
+//            cell.outRing.image = UIImage(named: "OutRing")
             
             return cell
-        }
-
-        return cell
     }
     
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
