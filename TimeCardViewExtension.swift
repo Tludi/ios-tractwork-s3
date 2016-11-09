@@ -33,6 +33,9 @@ extension TimeCardViewController {
         
         fourWeekTable.backgroundColor = tableColor2
         fourWeekTable.isHidden = true
+        workdayHeaderView.isHidden = false
+        weekHeaderView.isHidden = true
+        allWeeksHeaderView.isHidden = true
         
     }
     
@@ -52,6 +55,9 @@ extension TimeCardViewController {
         timePunchStack.isHidden = false
         weekTable.isHidden = true
         fourWeekTable.isHidden = true
+        workdayHeaderView.isHidden = false
+        weekHeaderView.isHidden = true
+        allWeeksHeaderView.isHidden = true
         timePunchTable.reloadData()
     }
     

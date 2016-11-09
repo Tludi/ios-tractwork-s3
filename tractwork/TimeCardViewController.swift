@@ -141,6 +141,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         timePunchStack.isHidden = true
         weekTable.isHidden = false
         fourWeekTable.isHidden = true
+        workdayHeaderView.isHidden = true
+        weekHeaderView.isHidden = false
+        allWeeksHeaderView.isHidden = true
         weekTable.reloadData()
     }
     
@@ -157,6 +160,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         timePunchStack.isHidden = true
         weekTable.isHidden = true
         fourWeekTable.isHidden = false
+        workdayHeaderView.isHidden = true
+        weekHeaderView.isHidden = true
+        allWeeksHeaderView.isHidden = false
         fourWeekTable.reloadData()
     }
     
