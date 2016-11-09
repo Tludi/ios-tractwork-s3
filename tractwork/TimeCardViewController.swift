@@ -37,6 +37,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     //*** Views
     //*********
     @IBOutlet weak var tablesContainerView: UIView!
+    @IBOutlet weak var workdayHeaderView: UIView!
+    @IBOutlet weak var weekHeaderView: UIView!
+    @IBOutlet weak var allWeeksHeaderView: UIView!
     
     
     //**** Tab Bar Buttons
@@ -293,7 +296,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         } else if tableView == weekTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
 
-            cell.weekHoursLabel.text = ("\(workweek.workdays[indexPath.row].dayDate.day())")
+            cell.weekHoursLabel.text = "\(workweek.workdays[indexPath.row].dayDate.toString(.custom("MM/dd")))"
             cell.totalHoursLabel.text = "\(workweek.workdays[indexPath.row].totalHoursWorked)"
             cell.dayNameLabel.text = currentWorkWeek.dayNames[indexPath.row]
             return cell
@@ -303,7 +306,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         } else if tableView == fourWeekTable {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "fourWeekCell") as! FourWeekTableViewCell
-            
+            cell.tintColor = UIColor.darkGray
             cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.toString(.custom("MM/dd/yyyy")))"
             cell.endDateLabel.text = "\(lastFourWeeks[indexPath.row].endOfWeek.toString(.custom("MM/dd/yyyy")))"
             cell.totalHoursLabel.text = returnWeekHoursAndMinutes(week: lastFourWeeks[indexPath.row])

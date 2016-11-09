@@ -18,6 +18,7 @@ class FourWeekTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,5 +26,7 @@ class FourWeekTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
     
 }
