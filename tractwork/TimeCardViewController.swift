@@ -305,6 +305,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             cell.weekHoursLabel.text = "\(workweek.workdays[indexPath.row].dayDate.toString(.custom("MM/dd")))"
             cell.totalHoursLabel.text = "\(workweek.workdays[indexPath.row].totalHoursWorked)"
             cell.dayNameLabel.text = currentWorkWeek.dayNames[indexPath.row]
+            if workweek.workdays[indexPath.row].dayDate.day() == Date().day() {
+                cell.backgroundColor = lightGreyNavColor2
+            }
             return cell
             
         //*** TimePunch Tab for all weeks
