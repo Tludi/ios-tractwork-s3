@@ -10,8 +10,9 @@ import Foundation
 import RealmSwift
 
 extension TimeCardViewController {
-    
+  
     func setBaseColors() {
+      // MARK: - Base Colors
         //*** set initial colors for nav tabs
         //***********************************
         todayNavBox.backgroundColor = lightGreyNavColor2
@@ -60,8 +61,8 @@ extension TimeCardViewController {
         allWeeksHeaderView.isHidden = true
         timePunchTable.reloadData()
     }
-    
-    //*** Get current WorkWeek
+  
+    // MARK: - Get current WorkWeek
     func getWorkweek(todaysDate: Date) -> WorkWeek {
         let realm = try! Realm()
         let workweeks = realm.objects(WorkWeek.self)

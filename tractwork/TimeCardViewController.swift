@@ -45,6 +45,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     //**** Tab Bar Buttons
     //********************
     @IBAction func clearWorkDays(_ sender: UIBarButtonItem) {
+      // TODO: - remove clearworkdays button for production
 //        let realm = try! Realm()
 //        let workdays = try! Realm().objects(Workday.self)
 //        try! realm.write {
