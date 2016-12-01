@@ -109,9 +109,52 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
             
             return cell
     }
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
+  
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    }
+  
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+      
+      let editTimeAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+        print("this")
+        self.performSegue(withIdentifier: "editTimePunchSegue", sender: self )
+      }
+      
+      // Delete trip functions
+      let deleteCellAction = UITableViewRowAction(style: .destructive, title: "Delete") { (UITableViewRowAction, IndexPath) -> Void in
+        print("delete action")
+        let deleteAlert = UIAlertController(title: "Confirm Delete", message: "Selected Time Will be DELETED!", preferredStyle: .alert)
+        deleteAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action: UIAlertAction) in
+//          try! self.realm.write {
+//            let selectedTrip = self.archivedTrips[indexPath.row]
+//            self.realm.delete(selectedTrip)
+//          }
+//          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }))
+        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction) in
+          return
+        }))
+        self.present(deleteAlert, animated: true, completion: nil)
+      }
+      return[editTimeAction, deleteCellAction]
+      
+    }
+  
+  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      if segue.identifier == "editTimePunchSegue" {
+        if let destintionController = segue.destination as? EditTimePunchViewController {
+          if let indexPath = self.dayTable.indexPathForSelectedRow {
+//            let lastFourWeeks = getLastFourWorkweeks()
+            let timePunch = passedDay.timePunches[indexPath.row]
+            destintionController.passedTimePunch = timePunch
+          }
+          
+        }
+      }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
 //        if indexPath.row < self.PDFPaths.count {
 //            
 //            
@@ -134,7 +177,7 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
 //            }
 //        }
 //        
-//    }
+    }
     
     
 //    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {

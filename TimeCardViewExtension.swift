@@ -85,16 +85,16 @@ extension TimeCardViewController {
         // Get all workweeks then drop the first test workweek
         let workweeks = realm.objects(WorkWeek.self).dropFirst()
         var lastFourWeeks = [WorkWeek]()
-        if workweeks.count >= 4 {
-            for i in 0..<4 {
-                let week = workweeks[i]
-                lastFourWeeks.append(week)
-            }
-        } else {
+//        if workweeks.count >= 4 {
+//            for i in 0..<4 {
+//                let week = workweeks[i]
+//                lastFourWeeks.append(week)
+//            }
+//        } else {
             for week in workweeks {
                 lastFourWeeks.append(week)
             }
-        }
+//        }
         
         return lastFourWeeks
     }

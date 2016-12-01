@@ -36,6 +36,7 @@
 		00CE2CD61DC1751400F4E53D /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE2CD51DC1751400F4E53D /* Reports.swift */; };
 		5A7EA1C6E43385A7D0CE527D /* Pods_tractwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3328B384E302251AE030E698 /* Pods_tractwork.framework */; };
 		EF4FB2501DD7B78300DD00E9 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FB24F1DD7B78300DD00E9 /* TODO.swift */; };
+		EF4FB2541DDD067300DD00E9 /* EditTimePunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FB2531DDD067300DD00E9 /* EditTimePunchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		90873A58A7A9D321CE4D1CD3 /* Pods-tractwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.debug.xcconfig"; sourceTree = "<group>"; };
 		B3854ABD1A4D8198559ACCAA /* Pods-tractwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tractwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-tractwork/Pods-tractwork.release.xcconfig"; sourceTree = "<group>"; };
 		EF4FB24F1DD7B78300DD00E9 /* TODO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
+		EF4FB2531DDD067300DD00E9 /* EditTimePunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimePunchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				005ABEEE1D8F4A7000C873D8 /* TimeCardViewController.swift */,
 				00CE2CD31DBEB3BE00F4E53D /* WeekTableViewController.swift */,
 				000DD5251DC2C24900BCB46E /* DayTableViewController.swift */,
+				EF4FB2531DDD067300DD00E9 /* EditTimePunchViewController.swift */,
 			);
 			path = tractwork;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			files = (
 				EF4FB2501DD7B78300DD00E9 /* TODO.swift in Sources */,
 				00B890361D90CD2E00E39794 /* GeneralExtensions.swift in Sources */,
+				EF4FB2541DDD067300DD00E9 /* EditTimePunchViewController.swift in Sources */,
 				005ABF071D8F7C4A00C873D8 /* DateHelper.swift in Sources */,
 				000DD5261DC2C24900BCB46E /* DayTableViewController.swift in Sources */,
 				0076E4CE1DCA89BD00BA8873 /* SingleTimePunchTableViewCell.swift in Sources */,
