@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,22 +41,36 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12:34" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="NiV-X2-CR0">
+                        <rect key="frame" x="211" y="17.5" width="100" height="21"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="Mzl-mG-nFZ"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="PBI-i2-mNl" firstAttribute="centerX" secondItem="QFd-RU-9Lk" secondAttribute="centerX" id="017-5h-32o"/>
                     <constraint firstItem="lKO-Wm-UJh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1hd-fd-xjp"/>
                     <constraint firstItem="PBI-i2-mNl" firstAttribute="leading" secondItem="lKO-Wm-UJh" secondAttribute="trailing" constant="11" id="332-r7-dYm"/>
                     <constraint firstItem="lKO-Wm-UJh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7Z0-HD-s3o"/>
+                    <constraint firstItem="NiV-X2-CR0" firstAttribute="leading" secondItem="WHA-kg-X6x" secondAttribute="trailing" constant="8" id="9DA-Xi-vAE"/>
                     <constraint firstItem="lKO-Wm-UJh" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Ayh-5X-vjQ"/>
                     <constraint firstItem="PBI-i2-mNl" firstAttribute="centerY" secondItem="QFd-RU-9Lk" secondAttribute="centerY" id="HgG-Yb-HFr"/>
                     <constraint firstItem="QFd-RU-9Lk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ox2-B8-dvV"/>
                     <constraint firstItem="QFd-RU-9Lk" firstAttribute="leading" secondItem="lKO-Wm-UJh" secondAttribute="trailing" constant="12" id="Tf5-r8-2v8"/>
                     <constraint firstItem="WHA-kg-X6x" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bXn-RX-PPU"/>
+                    <constraint firstItem="NiV-X2-CR0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hVm-lH-VYh"/>
                     <constraint firstItem="lKO-Wm-UJh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="od6-Hs-q0G"/>
                     <constraint firstItem="WHA-kg-X6x" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="qAy-zM-OhC"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="editPunchTimeField" destination="NiV-X2-CR0" id="a1q-cl-DN6"/>
                 <outlet property="punchTimeLabel" destination="WHA-kg-X6x" id="0rj-A6-SrW"/>
                 <outlet property="statusLabel" destination="PBI-i2-mNl" id="S5p-w8-tSE"/>
                 <outlet property="statusRing" destination="QFd-RU-9Lk" id="1uY-hI-fuN"/>

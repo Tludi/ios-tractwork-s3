@@ -202,7 +202,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         }
 
         //**** Set labels
-        dateLabel.text = todaysDate.toString(.custom("MMMM dd, yyyy"))
+        dateLabel.text = todaysDate.toString(format: .custom("MMMM dd, yyyy"))
         totalTimeLabel.text = "\(workday.totalHoursWorked)"
         setBaseColors() // set base colors of tables and navbar tabs
         
@@ -269,15 +269,15 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
 
             //*** Display and hide cell details based on number of punches in a pair of timePunches
             if timePunchPair.count == 2 {
-                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
-                cell.outLabel.text = timePunchPair[1].punchTime.toString(.custom("h:mm"))
+                cell.inLabel.text = timePunchPair[0].punchTime.toString(format: .custom("h:mm"))
+                cell.outLabel.text = timePunchPair[1].punchTime.toString(format: .custom("h:mm"))
                 cell.punchPairTime.text = returnPairTimeDifference(timeIn: timePunchPair[0], timeOut: timePunchPair[1])
                 cell.inRing.isHidden = false
                 cell.inLabel.isHidden = false
                 cell.outRing.isHidden = false
                 cell.outLabel.isHidden = false
             } else if timePunchPair.count == 1 {
-                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
+                cell.inLabel.text = timePunchPair[0].punchTime.toString(format: .custom("h:mm"))
                 cell.outLabel.text = " "
                 cell.punchPairTime.text = "Working"
                 cell.inRing.isHidden = false
@@ -303,10 +303,11 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
         } else if tableView == weekTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
 
-            cell.weekHoursLabel.text = "\(workweek.workdays[indexPath.row].dayDate.toString(.custom("MM/dd")))"
+            cell.weekHoursLabel.text = "\(workweek.workdays[indexPath.row].dayDate.toString(format: .custom("MM/dd")))"
             cell.totalHoursLabel.text = "\(workweek.workdays[indexPath.row].totalHoursWorked)"
             cell.dayNameLabel.text = currentWorkWeek.dayNames[indexPath.row]
-            if workweek.workdays[indexPath.row].dayDate.day() == Date().day() {
+//            if workweek.workdays[indexPath.row].dayDate.day() == Date().day() {
+            if workweek.workdays[indexPath.row].dayDate.compare(.isToday) {
                 cell.backgroundColor = lightGreyNavColor2
             }
             return cell
@@ -317,8 +318,8 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "fourWeekCell") as! FourWeekTableViewCell
             cell.tintColor = UIColor.darkGray
-            cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.toString(.custom("MM/dd/yyyy")))"
-            cell.endDateLabel.text = "\(lastFourWeeks[indexPath.row].endOfWeek.toString(.custom("MM/dd/yyyy")))"
+            cell.startDateLabel.text = "\(lastFourWeeks[indexPath.row].startOfWeek.toString(format: .custom("MM/dd/yyyy")))"
+            cell.endDateLabel.text = "\(lastFourWeeks[indexPath.row].endOfWeek.toString(format: .custom("MM/dd/yyyy")))"
             cell.totalHoursLabel.text = returnWeekHoursAndMinutes(week: lastFourWeeks[indexPath.row])
             cell.weekNumber.text = String(lastFourWeeks[indexPath.row].weekNumber)
             

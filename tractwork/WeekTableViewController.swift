@@ -129,7 +129,7 @@ class WeekTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
 
 //        cell.textLabel?.text = passedWeek.workdays[indexPath.row].dayDate.toString()
-        cell.weekHoursLabel.text = ("\(passedWeek.workdays[indexPath.row].dayDate.day())")
+        cell.weekHoursLabel.text = ("\(passedWeek.workdays[indexPath.row].dayDate.component(.day))")
         cell.totalHoursLabel.text = "\(passedWeek.workdays[indexPath.row].totalHoursWorked)"
         cell.dayNameLabel.text = passedWeek.dayNames[indexPath.row]
         

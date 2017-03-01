@@ -13,10 +13,13 @@ class SingleTimePunchTableViewCell: UITableViewCell {
     @IBOutlet weak var statusRing: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var punchTimeLabel: UILabel!
+    @IBOutlet weak var editPunchTimeField: UITextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let commonTextFieldAttributes: NSDictionary = [NSForegroundColorAttributeName:UIColor.black]
+        editPunchTimeField.attributedPlaceholder = NSAttributedString(string: "time", attributes: commonTextFieldAttributes as? [String: AnyObject])
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

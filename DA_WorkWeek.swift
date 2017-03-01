@@ -21,8 +21,10 @@ extension WorkWeek {
     
     func setCurrentWorkWeek(workweeks: Results<WorkWeek>, workdate: Date) -> WorkWeek {
         var workweek = WorkWeek()
-        let workWeekNumber = workdate.week() // number of the week of the year
-        let workWeekYear = workdate.year()
+//        let workWeekNumber = workdate.week() // number of the week of the year
+        let workWeekNumber = workdate.component(.week)
+//        let workWeekYear = workdate.year()
+        let workWeekYear = workdate.component(.year)
         let lastRecordedWeek = workweeks.last
         
         
@@ -47,10 +49,10 @@ func createWorkWeek(workdate: Date) -> WorkWeek{
     let workweek = WorkWeek()
     try! realm.write {
         workweek.id = NSUUID().uuidString
-        workweek.weekNumber = workdate.week()
-        workweek.weekYear = workdate.year()
-        workweek.startOfWeek = workdate.dateAtStartOfWeek()
-        workweek.endOfWeek = workdate.dateAtEndOfWeek()
+        workweek.weekNumber = workdate.component(.week)!
+        workweek.weekYear = workdate.component(.year)!
+        workweek.startOfWeek = workdate.dateFor(.startOfWeek)
+        workweek.endOfWeek = workdate.dateFor(.endOfWeek)
         realm.add(workweek)
         print(workweek)
     }
@@ -65,7 +67,8 @@ func createWorkdaysForWorkWeek(workweek: WorkWeek) {
         let workday = Workday()
         try! realm.write {
             workday.id = NSUUID().uuidString
-            workday.dayDate = workweek.startOfWeek.dateByAddingDays(i)
+//            workday.dayDate = workweek.startOfWeek.dateByAddingDays(i)
+            workday.dayDate = workweek.startOfWeek.adjust(.day, offset: i)
             workweek.workdays.append(workday)
         }
     }

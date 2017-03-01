@@ -143,7 +143,7 @@ extension TimeCardViewController {
         let totalTime = addTimeDifferenceFromPairs(partitionedTimes: partitionedTimes, workday: workday)
         
         // 4. update Workday.totalTime
-        let workweek = getWorkweek(todaysDate: workday.dayDate.dateAtStartOfWeek())
+        let workweek = getWorkweek(todaysDate: workday.dayDate.dateFor(.startOfWeek))
         
         let realm = try! Realm()
         try! realm.write() {
@@ -186,7 +186,10 @@ extension TimeCardViewController {
         
         for pair in partitionedTimes {
             //*** get difference in pair in total minutes
-            runningTime += pair[0].minutesBeforeDate(pair[1])
+//            runningTime += pair[0].minutesBeforeDate(pair[1])
+            var difference: Int = Int(pair[1].since(pair[0], in: .minute))
+            runningTime += difference
+            
 //            workweekTime += runningTime
         }
         
@@ -271,9 +274,10 @@ extension TimeCardViewController {
     
     func returnPairTimeDifference(timeIn: TimePunch, timeOut: TimePunch) -> String {
         var timeDifference = String()
-        let runningTime = timeIn.punchTime.minutesBeforeDate(timeOut.punchTime)
-
-        timeDifference = convertHoursAndMinutesToString(minutes: runningTime)
+//        let runningTime = timeIn.punchTime.minutesBeforeDate(timeOut.punchTime)
+        let runningTime = timeOut.punchTime.since(timeIn.punchTime, in: .minute)
+//        let runningTime = timeIn.punchTime.adjust(.minute, offset: timeOut.punchTime)
+        timeDifference = convertHoursAndMinutesToString(minutes: Int(runningTime))
         return timeDifference
     }
     

@@ -7,16 +7,42 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EditTimePunchViewController: UIViewController {
 
     var passedTimePunch = TimePunch()
   
+    @IBOutlet weak var timePunchPickerOutlet: UIDatePicker!
+
+    @IBAction func timePunchPicker(_ sender: UIDatePicker) {
+
+    }
+    
     @IBOutlet weak var testLabel: UILabel!
+    @IBAction func backButton(_ sender: UIButton) {
+//        let realm = try! Realm()
+        let updatedTime = timePunchPickerOutlet.date
+        print(updatedTime)
+//        try! realm.write {
+//            passedTimePunch.punchTime = updatedTime
+//            
+//        }
+    }
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      testLabel.text = "\(passedTimePunch.punchTime)"
+        print("passed Time Punch")
+        print(passedTimePunch)
+        
+//        let date = passedTimePunch.punchTime
+        let date = Date().adjust(.hour, offset: -4)
+        timePunchPickerOutlet.date = date
+
+        
+        
+        testLabel.text = "\(passedTimePunch.punchTime)"
+//        timeTextField.placeholder = "\(passedTimePunch.punchTime.toString(.custom("h:mm")))"
       
         // Do any additional setup after loading the view.
     }

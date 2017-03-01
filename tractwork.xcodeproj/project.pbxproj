@@ -232,7 +232,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = diligentagility;
 				TargetAttributes = {
 					005ABEE81D8F4A7000C873D8 = {

@@ -5,6 +5,9 @@
 //  Created by manatee on 10/27/16.
 //  Copyright © 2016 diligentagility. All rights reserved.
 //
+//  Workday Punches list Controller - 
+//  *** Lists individual punches for selected workday
+//  *** Need to impliment adding a new punch or editing existing punch
 
 import UIKit
 import RealmSwift
@@ -36,9 +39,13 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
 //        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 //    }
 
+    @IBAction func cancelToEditPunchController(segue: UIStoryboardSegue) {
+        
+    }
     override func viewDidLoad() {
         dayTable.register(UINib(nibName: "TimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "timePunchCell")
         dayTable.register(UINib(nibName: "SingleTimePunchTableViewCell", bundle: nil), forCellReuseIdentifier: "singleTimePunchCell")
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,7 +85,9 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
             } else {
                 cell.statusLabel.text = "OUT"
             }
-            cell.punchTimeLabel.text = timePunch.punchTime.toString(.custom("h:mm"))
+        cell.punchTimeLabel.text = timePunch.punchTime.toString(format: .custom("h:mm"))
+        
+
 //            //*** Display and hide cell details based on number of punches in a pair of timePunches
 //            if timePunchPair.count == 2 {
 //                cell.inLabel.text = timePunchPair[0].punchTime.toString(.custom("h:mm"))
@@ -154,6 +163,7 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
       }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "editTimePunchSegue", sender: self)
 //
 //        if indexPath.row < self.PDFPaths.count {
 //            
@@ -183,13 +193,13 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
 //    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
 //        return self
 //    }
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
     /*
     // Override to support editing the table view.
@@ -256,9 +266,10 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
     
     func returnPairTimeDifference(timeIn: TimePunch, timeOut: TimePunch) -> String {
         var timeDifference = String()
-        let runningTime = timeIn.punchTime.minutesBeforeDate(timeOut.punchTime)
+//        let runningtime = timeIn.punchTime.minutestBeforeDate(timeOut.punchTime)
+        let runningTime = timeOut.punchTime.since(timeIn.punchTime, in: .minute)
         
-        timeDifference = convertHoursAndMinutesToString(minutes: runningTime)
+        timeDifference = convertHoursAndMinutesToString(minutes: Int(runningTime))
         return timeDifference
     }
     

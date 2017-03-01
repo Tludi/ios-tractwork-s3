@@ -15,7 +15,8 @@ extension Workday {
         var workday = Workday()
         let workdays = workweek.workdays
         for day in workdays {
-            if day.dayDate.weekday() == workdate.weekday() {
+//            if day.dayDate.weekday() == workdate.weekday() {
+            if day.dayDate.compare(.isToday) {
                 workday = day
             }
         }

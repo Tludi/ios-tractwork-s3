@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AuI-g3-Rff">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AuI-g3-Rff">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -474,7 +474,7 @@
             </objects>
             <point key="canvasLocation" x="1428" y="-99"/>
         </scene>
-        <!--Day Table View Controller-->
+        <!--Title-->
         <scene sceneID="naX-nf-opk">
             <objects>
                 <tableViewController id="Bc7-NY-9Fo" customClass="DayTableViewController" customModule="tractwork" customModuleProvider="target" sceneMemberID="viewController">
@@ -487,11 +487,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dTs-Yy-ScV" id="lFZ-5g-wm3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g1x-a6-SOK">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="56"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="56.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -499,6 +499,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Zjb-uO-3J3" kind="show" identifier="editTimePunchSegue" id="moa-CT-73R"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -506,9 +509,9 @@
                             <outlet property="delegate" destination="Bc7-NY-9Fo" id="8ky-Qh-Ld9"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="h0t-LK-wgK"/>
                     <connections>
                         <outlet property="dayTable" destination="Vt4-ht-XXg" id="on6-T6-eTT"/>
-                        <segue destination="Zjb-uO-3J3" kind="show" identifier="editTimePunchSegue" id="qNF-r5-elR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMh-41-bfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,26 +530,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Time Punch View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cr-PJ-frm">
-                                <rect key="frame" x="104.5" y="323.5" width="166" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucn-b1-j9J">
+                                <rect key="frame" x="68" y="248" width="250" height="250"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Time Punch View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cr-PJ-frm">
+                                        <rect key="frame" x="42" y="113" width="166" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="166" id="JKL-2y-SZi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYB-2x-Snb">
+                                        <rect key="frame" x="75" y="175" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="0st-IN-Hel"/>
+                                            <constraint firstAttribute="width" constant="100" id="RdH-0Y-gXJ"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="tnM-Gm-pfI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="backButton:" destination="Zjb-uO-3J3" eventType="touchUpInside" id="iDs-dg-qFE"/>
+                                            <segue destination="3jk-jx-GMp" kind="unwind" unwindAction="cancelToEditPunchControllerWithSegue:" id="LD5-I1-ZkT"/>
+                                        </connections>
+                                    </button>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="wjN-Wr-6zs">
+                                        <rect key="frame" x="-35" y="-49" width="320" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="510009308.03044403">
+                                            <!--2017-02-28 21:15:08 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="timePunchPicker:" destination="Zjb-uO-3J3" eventType="valueChanged" id="QZ2-y3-QMJ"/>
+                                        </connections>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="tYB-2x-Snb" firstAttribute="top" secondItem="8cr-PJ-frm" secondAttribute="bottom" constant="39" id="69v-qd-Ng1"/>
+                                    <constraint firstItem="8cr-PJ-frm" firstAttribute="centerY" secondItem="Ucn-b1-j9J" secondAttribute="centerY" id="9CM-Gn-dSS"/>
+                                    <constraint firstItem="8cr-PJ-frm" firstAttribute="centerX" secondItem="Ucn-b1-j9J" secondAttribute="centerX" id="D7G-ie-2XO"/>
+                                    <constraint firstAttribute="bottom" secondItem="tYB-2x-Snb" secondAttribute="bottom" constant="45" id="L1A-xN-On8"/>
+                                    <constraint firstItem="wjN-Wr-6zs" firstAttribute="centerX" secondItem="8cr-PJ-frm" secondAttribute="centerX" id="LLF-Bn-u7e"/>
+                                    <constraint firstItem="tYB-2x-Snb" firstAttribute="top" secondItem="wjN-Wr-6zs" secondAttribute="bottom" constant="8" symbolic="YES" id="bVy-fg-D9K"/>
+                                    <constraint firstItem="tYB-2x-Snb" firstAttribute="centerX" secondItem="Ucn-b1-j9J" secondAttribute="centerX" id="fUO-Ef-ioh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8cr-PJ-frm" firstAttribute="centerX" secondItem="ptj-tX-eoO" secondAttribute="centerX" id="OhQ-HX-gbX"/>
-                            <constraint firstItem="8cr-PJ-frm" firstAttribute="centerY" secondItem="ptj-tX-eoO" secondAttribute="centerY" id="lVz-UF-cPc"/>
+                            <constraint firstItem="Ucn-b1-j9J" firstAttribute="leading" secondItem="ptj-tX-eoO" secondAttribute="leadingMargin" constant="52" id="52g-Uv-CwN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ucn-b1-j9J" secondAttribute="trailing" constant="41" id="DME-Ty-ZCG"/>
+                            <constraint firstItem="Ucn-b1-j9J" firstAttribute="top" secondItem="TDK-uz-r8h" secondAttribute="bottom" constant="184" id="SyD-iS-GMP"/>
+                            <constraint firstItem="Ucn-b1-j9J" firstAttribute="centerX" secondItem="ptj-tX-eoO" secondAttribute="centerX" constant="5.5" id="caT-8L-aah"/>
+                            <constraint firstItem="S8A-Ke-7vZ" firstAttribute="top" secondItem="Ucn-b1-j9J" secondAttribute="bottom" constant="169" id="luH-rm-cri"/>
+                            <constraint firstItem="Ucn-b1-j9J" firstAttribute="centerY" secondItem="ptj-tX-eoO" secondAttribute="centerY" constant="39.5" id="sBF-sf-6oJ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="testLabel" destination="8cr-PJ-frm" id="tSw-9L-TtJ"/>
+                        <outlet property="timePunchPickerOutlet" destination="wjN-Wr-6zs" id="dEB-5p-sVT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJw-0T-43g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3jk-jx-GMp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2278" y="594"/>
+            <point key="canvasLocation" x="2277.5999999999999" y="593.25337331334333"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cP2-vN-4hi">
