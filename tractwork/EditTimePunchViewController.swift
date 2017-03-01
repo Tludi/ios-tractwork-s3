@@ -42,8 +42,8 @@ class EditTimePunchViewController: UIViewController {
         print(passedTimePunch)
         
 //        let date = passedTimePunch.punchTime
-        let date = Date().adjust(.hour, offset: -4)
-        timePunchPickerOutlet.date = (timePunches.last?.punchTime)!
+//        let date = Date().adjust(.hour, offset: -4)
+        timePunchPickerOutlet.date = passedTimePunch.punchTime
 
         
         

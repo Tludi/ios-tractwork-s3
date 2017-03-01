@@ -15,6 +15,7 @@ import RealmSwift
 
 class DayTableViewController: UITableViewController, UIDocumentInteractionControllerDelegate {
     var passedDay = Workday()
+    var selectedTimePunch = TimePunch()
     
     @IBOutlet var dayTable: UITableView!
 //    func updatePaths(notification: Notification?) {
@@ -126,6 +127,7 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
       
       let editTimeAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
         print("this")
+        self.selectedTimePunch = self.passedDay.timePunches[indexPath.row]
         self.performSegue(withIdentifier: "editTimePunchSegue", sender: self )
       }
       
@@ -153,18 +155,19 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       if segue.identifier == "editTimePunchSegue" {
         if let destintionController = segue.destination as? EditTimePunchViewController {
-          if let indexPath = self.dayTable.indexPathForSelectedRow {
-//            let lastFourWeeks = getLastFourWorkweeks()
-            let timePunch = passedDay.timePunches[indexPath.row]
-            destintionController.passedTimePunch = timePunch
-          }
-          
+          print("correct edit time punch controller")
+//          if let indexPath = self.dayTable.indexPathForSelectedRow {
+            print("time punch is:")
+          print(selectedTimePunch)
+            
+          destintionController.passedTimePunch = selectedTimePunch
         }
       }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "editTimePunchSegue", sender: self)
-//
+//        performSegue(withIdentifier: "editTimePunchSegue", sender: self)
+      
+      //
 //        if indexPath.row < self.PDFPaths.count {
 //            
 //            
