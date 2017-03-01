@@ -12,6 +12,9 @@ import RealmSwift
 class EditTimePunchViewController: UIViewController {
 
     var passedTimePunch = TimePunch()
+    let realm = try! Realm()
+
+    
   
     @IBOutlet weak var timePunchPickerOutlet: UIDatePicker!
 
@@ -32,12 +35,15 @@ class EditTimePunchViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        let timePunches = realm.objects(TimePunch.self)
+        print("first Time Punch")
+        print(timePunches.last!)
         print("passed Time Punch")
         print(passedTimePunch)
         
 //        let date = passedTimePunch.punchTime
         let date = Date().adjust(.hour, offset: -4)
-        timePunchPickerOutlet.date = date
+        timePunchPickerOutlet.date = (timePunches.last?.punchTime)!
 
         
         
