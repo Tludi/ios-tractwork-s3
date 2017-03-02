@@ -14,7 +14,7 @@ import PDFGenerator
 class WeekTableViewController: UITableViewController {
     let realm = try! Realm()
     var workWeeks = try! Realm().objects(WorkWeek.self).filter("weekNumber != 555")
-    var testText = String()
+    var navText = String()
     var passedWeek = WorkWeek()
     
     
@@ -92,7 +92,7 @@ class WeekTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(workWeeks.count)
-        self.navigationItem.title = testText
+        self.navigationItem.title = navText
         
         workdayTable.register(UINib(nibName: "WeekHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "weekHoursCell")
         // Uncomment the following line to preserve selection between presentations
@@ -129,7 +129,8 @@ class WeekTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weekHoursCell") as! WeekHoursTableViewCell
 
 //        cell.textLabel?.text = passedWeek.workdays[indexPath.row].dayDate.toString()
-        cell.weekHoursLabel.text = ("\(passedWeek.workdays[indexPath.row].dayDate.component(.day))")
+        cell.weekHoursLabel.text = ("\(passedWeek.workdays[indexPath.row].dayDate.toString(format: .custom("MMM/dd")))")
+//        cell.weekHoursLabel.text = ("\(passedWeek.workdays[indexPath.row].dayDate.component(.day))")
         cell.totalHoursLabel.text = "\(passedWeek.workdays[indexPath.row].totalHoursWorked)"
         cell.dayNameLabel.text = passedWeek.dayNames[indexPath.row]
         

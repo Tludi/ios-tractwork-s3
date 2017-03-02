@@ -353,9 +353,9 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
                     destintionController.passedWeek = workweek
                 }
 
-                let testText = "test text"
+                let navText = "Workdays"
                 
-                destintionController.testText = testText
+                destintionController.navText = navText
             }
         }
     }
