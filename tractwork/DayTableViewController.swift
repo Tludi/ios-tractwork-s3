@@ -51,7 +51,7 @@ class DayTableViewController: UITableViewController, UIDocumentInteractionContro
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        dayTable.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

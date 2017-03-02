@@ -23,14 +23,18 @@ class EditTimePunchViewController: UIViewController {
     }
     
     @IBOutlet weak var testLabel: UILabel!
-    @IBAction func backButton(_ sender: UIButton) {
-//        let realm = try! Realm()
+    @IBAction func updateButton(_ sender: UIButton) {
+        let realm = try! Realm()
         let updatedTime = timePunchPickerOutlet.date
         print(updatedTime)
-//        try! realm.write {
-//            passedTimePunch.punchTime = updatedTime
-//            
-//        }
+//        testLabel.text = "hello"
+        testLabel.text =
+            "\(timePunchPickerOutlet.date)"
+        try! realm.write {
+            passedTimePunch.punchTime = updatedTime
+//
+        }
+        print("new punch time is: \(passedTimePunch.punchTime)")
     }
   
     override func viewDidLoad() {

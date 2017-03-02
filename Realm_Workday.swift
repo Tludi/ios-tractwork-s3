@@ -64,6 +64,13 @@ class TimePunch: Object {
     var timePunchWorkday = LinkingObjects(fromType: Workday.self, property: "timePunches")
 }
 
+//class AdditionalTime: Object {
+//    dynamic var id = ""
+//    dynamic var addedTime = Date()
+//    
+//    override static func primaryKey() -> String? {
+//        return "id"
+//}
 
 
 class Project: Object {
