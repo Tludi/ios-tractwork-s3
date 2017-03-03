@@ -219,6 +219,25 @@ extension TimeCardViewController {
         return totalTime
     }
     
+    
+    //*** create additional time to add to total time for the workday
+    func createAdditionalTimeForWorkday(workday: Workday) {
+        let newAdditionalTime = AdditionalTime()
+        let todaysAdditionalTimes = workday.additionalTimes
+        
+        let realm = try! Realm()
+        try! realm.write {
+            newAdditionalTime.id = NSUUID().uuidString
+            print("new time id")
+            print(newAdditionalTime.id)
+            
+            newAdditionalTime.addedTime = 5
+            todaysAdditionalTimes.append(newAdditionalTime)
+        }
+    }
+    
+    
+    
     func calculateTotalWeekTime(workweek: WorkWeek) -> Int {
         let workdays = workweek.workdays
         var totalWeekMinutes = Int()

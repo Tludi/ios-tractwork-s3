@@ -106,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="50" width="355" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Time Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U0-Oz-UHj">
-                                                <rect key="frame" x="225" y="-3" width="83" height="21"/>
+                                                <rect key="frame" x="224.5" y="-3" width="83" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="83" id="R3Q-BG-uSn"/>
                                                     <constraint firstAttribute="height" constant="21" id="iGM-xb-s5Q"/>
@@ -160,7 +160,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2za-3O-hGS">
-                                                <rect key="frame" x="20" y="-3" width="53.5" height="21"/>
+                                                <rect key="frame" x="20" y="-3" width="54" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="53.5" id="YDy-Zf-wsJ"/>
                                                     <constraint firstAttribute="height" constant="21" id="uNw-qs-Cv0"/>
@@ -170,7 +170,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OE0-7T-eQk">
-                                                <rect key="frame" x="161.5" y="-3" width="32" height="21"/>
+                                                <rect key="frame" x="162" y="-3" width="32" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="ZEc-Ud-u99"/>
                                                     <constraint firstAttribute="height" constant="21" id="yAB-JL-LZz"/>
@@ -195,7 +195,7 @@
                                         <rect key="frame" x="0.0" y="50" width="355" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgp-rk-mxU">
-                                                <rect key="frame" x="10" y="-3" width="53.5" height="21"/>
+                                                <rect key="frame" x="10" y="-3" width="54" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="8ee-JN-A1v"/>
                                                     <constraint firstAttribute="width" constant="53.5" id="wzw-71-s2D"/>
@@ -205,7 +205,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFs-6w-r1z">
-                                                <rect key="frame" x="91.5" y="-3" width="32" height="21"/>
+                                                <rect key="frame" x="92" y="-3" width="32" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="7JB-zA-8iU"/>
                                                     <constraint firstAttribute="width" constant="32" id="ffk-zh-vFj"/>
@@ -215,7 +215,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11n-9a-RDI">
-                                                <rect key="frame" x="201.5" y="-3" width="32" height="21"/>
+                                                <rect key="frame" x="202" y="-3" width="32" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="aQm-cY-N0k"/>
                                                     <constraint firstAttribute="width" constant="32" id="nHA-Se-Cc9"/>
@@ -334,13 +334,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxb-0Q-WSl">
-                                <rect key="frame" x="143" y="390" width="89.5" height="20.5"/>
+                                <rect key="frame" x="143.5" y="390.5" width="89.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAY-xA-qUg">
-                                <rect key="frame" x="68.5" y="72" width="238" height="238"/>
+                                <rect key="frame" x="69" y="72" width="238" height="238"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="238" id="WMg-Sa-Zyl"/>
                                     <constraint firstAttribute="width" constant="238" id="a0q-k6-ez0"/>
@@ -351,24 +351,30 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHI-fL-Ft7">
-                                <rect key="frame" x="163" y="361" width="49.5" height="20.5"/>
+                                <rect key="frame" x="163.5" y="362" width="49.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc9-7A-Sxk">
-                                <rect key="frame" x="16" y="381" width="46" height="30"/>
+                                <rect key="frame" x="16" y="381" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="JNY-7E-hFK"/>
-                                    <constraint firstAttribute="width" constant="46" id="qJ4-qZ-9SV"/>
+                                    <constraint firstAttribute="width" constant="100" id="qJ4-qZ-9SV"/>
                                 </constraints>
-                                <state key="normal" title="DTP">
+                                <state key="normal" title="Add Time">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="deleteTodaysTimePunches:" destination="ZBr-54-0uO" eventType="touchUpInside" id="Lgt-w9-QWy"/>
+                                    <action selector="addTime:" destination="ZBr-54-0uO" eventType="touchUpInside" id="GSX-cO-D4M"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfa-dr-9PZ">
+                                <rect key="frame" x="317" y="381" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -383,9 +389,11 @@
                             <constraint firstItem="Bxb-0Q-WSl" firstAttribute="centerX" secondItem="Eud-HL-56j" secondAttribute="centerX" id="MG8-w3-NWT"/>
                             <constraint firstItem="Bxb-0Q-WSl" firstAttribute="top" secondItem="iHI-fL-Ft7" secondAttribute="bottom" constant="8.5" id="N5c-BS-7IV"/>
                             <constraint firstItem="PY0-2A-eJ3" firstAttribute="top" secondItem="Jc9-7A-Sxk" secondAttribute="bottom" constant="8" id="OrJ-Ws-vmF"/>
+                            <constraint firstItem="Nfa-dr-9PZ" firstAttribute="trailing" secondItem="Eud-HL-56j" secondAttribute="trailingMargin" id="PZN-jE-jSg"/>
                             <constraint firstItem="EZZ-EB-Kdt" firstAttribute="leading" secondItem="Eud-HL-56j" secondAttribute="leading" id="Qif-XC-xyn"/>
                             <constraint firstAttribute="trailing" secondItem="PY0-2A-eJ3" secondAttribute="trailing" constant="10" id="bQg-WZ-P2c"/>
                             <constraint firstItem="oAY-xA-qUg" firstAttribute="centerX" secondItem="Eud-HL-56j" secondAttribute="centerX" id="eZT-oE-9oj"/>
+                            <constraint firstItem="Nfa-dr-9PZ" firstAttribute="top" secondItem="Jc9-7A-Sxk" secondAttribute="top" id="knv-7J-tjs"/>
                             <constraint firstItem="oAY-xA-qUg" firstAttribute="top" secondItem="cpk-Ep-POt" secondAttribute="bottom" constant="8" id="lMh-4l-QMY"/>
                             <constraint firstItem="6B2-W2-dWh" firstAttribute="leading" secondItem="Eud-HL-56j" secondAttribute="leading" id="qSe-LB-8R3"/>
                             <constraint firstItem="6B2-W2-dWh" firstAttribute="top" secondItem="Eud-HL-56j" secondAttribute="top" id="uw8-43-NYr"/>
@@ -408,10 +416,10 @@
                         </leftBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addedTimeLabel" destination="Nfa-dr-9PZ" id="N1p-Bx-SRC"/>
                         <outlet property="allWeeksHeaderView" destination="xmL-jp-IeL" id="je2-TP-zIA"/>
                         <outlet property="currentStatusLabel" destination="iHI-fL-Ft7" id="9Wo-Qh-dh3"/>
                         <outlet property="dateLabel" destination="Bxb-0Q-WSl" id="ouP-qX-A7z"/>
-                        <outlet property="deleteTodaysTimePunches" destination="Jc9-7A-Sxk" id="3Na-Tj-IuQ"/>
                         <outlet property="fourWeekButtonLabel" destination="MHr-0w-hau" id="262-Im-YzW"/>
                         <outlet property="fourWeekNavBox" destination="7Fv-br-Pfm" id="VGp-Qy-elb"/>
                         <outlet property="fourWeekTable" destination="IvY-RO-1ug" id="vbQ-zL-23o"/>

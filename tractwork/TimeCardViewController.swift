@@ -33,6 +33,7 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var currentStatusLabel: UILabel!
+    @IBOutlet weak var addedTimeLabel: UILabel!
     
     //*** Views
     //*********
@@ -67,17 +68,15 @@ class TimeCardViewController: UIViewController, UITableViewDelegate, UITableView
 
     //**** Buttons
     //************
-    @IBOutlet weak var deleteTodaysTimePunches: UIButton!
-    @IBAction func deleteTodaysTimePunches(_ sender: UIButton) {
+
+    @IBAction func addTime(_ sender: UIButton) {
         let workweek = getWorkweek(todaysDate: todaysDate)
         let workday = getWorkday(workweek: workweek, todaysDate: todaysDate)
-        let todaysTimePunches = workday.timePunches
-        let realm = try! Realm()
-        try! realm.write {
-            realm.delete(todaysTimePunches)
-            workday.totalHoursWorked = "0:00"
-            workday.currentStatus = false
-        }
+        createAdditionalTimeForWorkday(workday: workday)
+        
+        print("pressed add time")
+        print(workday.additionalTimes.count)
+        addedTimeLabel.text = "\(workday.additionalTimes.first!.addedTime)"
         timePunchTable.reloadData()
     }
     

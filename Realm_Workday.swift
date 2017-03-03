@@ -42,7 +42,7 @@ class Workday: Object {
     }
     
     let timePunches = List<TimePunch>()
-    
+    let additionalTimes = List<AdditionalTime>()
     let projects = List<Project>()
     
 }
@@ -64,13 +64,16 @@ class TimePunch: Object {
     var timePunchWorkday = LinkingObjects(fromType: Workday.self, property: "timePunches")
 }
 
-//class AdditionalTime: Object {
-//    dynamic var id = ""
-//    dynamic var addedTime = Date()
-//    
-//    override static func primaryKey() -> String? {
-//        return "id"
-//}
+class AdditionalTime: Object {
+    dynamic var id = ""
+    dynamic var addedTime = Int()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    var additionalTimeWorkday = LinkingObjects(fromType: Workday.self, property: "additionalTimes")
+}
 
 
 class Project: Object {
